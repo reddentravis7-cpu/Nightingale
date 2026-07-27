@@ -1,0 +1,61 @@
+[
+  {
+    "id": "hl7-v2.control",
+    "title": "CONTROL",
+    "description": "Message envelope and acknowledgment mechanics — MSH, MSA, and the delimiter/typing rules that govern every other segment.",
+    "icon": "ti-adjustments",
+    "ordering": 1,
+    "domain": "hl7-v2",
+    "parentCollectionId": null,
+    "query": { "tags": ["hl7v2", "control"] }
+  },
+  {
+    "id": "hl7-v2.patient-administration",
+    "title": "PATIENT ADMINISTRATION",
+    "description": "ADT segments — patient identity and visit context.",
+    "icon": "ti-id-badge-2",
+    "ordering": 2,
+    "domain": "hl7-v2",
+    "parentCollectionId": null,
+    "query": { "tags": ["hl7v2", "adt"] }
+  },
+  {
+    "id": "hl7-v2.orders-results",
+    "title": "ORDERS & RESULTS",
+    "description": "Order and observation-reporting segments.",
+    "icon": "ti-clipboard-list",
+    "ordering": 3,
+    "domain": "hl7-v2",
+    "parentCollectionId": null,
+    "query": { "tags": ["hl7v2", "orders"] }
+  },
+  {
+    "id": "hl7-v2.orders-results.results",
+    "title": "RESULTS",
+    "description": "Result-reporting segments specifically — a nested view, not a separate copy. OBR carries both the orders and results tags since it's genuinely reused across both contexts, so it surfaces in both this Category and its parent Directory without duplication, same as Cisco's show-ip-route case.",
+    "ordering": 1,
+    "domain": "hl7-v2",
+    "parentCollectionId": "hl7-v2.orders-results",
+    "query": { "tags": ["hl7v2", "results"] }
+  },
+  {
+    "id": "hl7-fhir.resources",
+    "title": "RESOURCES",
+    "description": "FHIR resource definitions — the standalone, referenceable analogues of v2's segments.",
+    "icon": "ti-stack-2",
+    "ordering": 1,
+    "domain": "hl7-fhir",
+    "parentCollectionId": null,
+    "query": { "tags": ["fhir", "resource"] }
+  },
+  {
+    "id": "hl7-fhir.interactions",
+    "title": "RESTFUL INTERACTIONS",
+    "description": "FHIR's RESTful verbs and discovery mechanics — CRUD over HTTP rather than message-passing.",
+    "icon": "ti-api",
+    "ordering": 2,
+    "domain": "hl7-fhir",
+    "parentCollectionId": null,
+    "query": { "tags": ["fhir", "restful-interaction"] }
+  }
+]
