@@ -1,0 +1,2928 @@
+{
+  "blocks": [
+    {
+      "id": "cisco-ios.show-users",
+      "title": "show users",
+      "aliases": [
+        "sh users"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "general"
+      ],
+      "summary": "Lists sessions currently connected to the device.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show users",
+        "parameters": [],
+        "sampleOutput": "    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 00:00:00\n   1 vty 0     admin      idle                 00:04:12   10.10.10.5",
+        "fieldNotes": "Useful for confirming who else is on the box before making a change, or during an incident to see who else might be active."
+      }
+    },
+    {
+      "id": "cisco-ios.show-clock",
+      "title": "show clock",
+      "aliases": [
+        "sh clock"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "general"
+      ],
+      "summary": "Displays the device's current system time.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show clock",
+        "parameters": [],
+        "sampleOutput": "14:32:07.481 UTC Sun Jul 26 2026",
+        "fieldNotes": "Check this before trusting timestamps in logs \u2014 an unset clock makes show logging output misleading."
+      }
+    },
+    {
+      "id": "cisco-ios.show-history",
+      "title": "show history",
+      "aliases": [
+        "sh history"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "general"
+      ],
+      "summary": "Lists recently entered CLI commands in the current session.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show history",
+        "parameters": [],
+        "sampleOutput": "  show ip interface brief\n  configure terminal\n  interface GigabitEthernet0/1",
+        "fieldNotes": "Handy for reconstructing what was just changed when handing off to another engineer mid-incident."
+      }
+    },
+    {
+      "id": "cisco-ios.show-interfaces",
+      "title": "show interfaces",
+      "aliases": [
+        "sh int"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "interfaces",
+        "troubleshooting",
+        "layer1"
+      ],
+      "summary": "Detailed status, counters, and errors for one or all interfaces.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-interface-brief",
+        "cisco-ios.show-interfaces-status"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Interface and Hardware Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show interfaces [interface-id]",
+        "parameters": [
+          {
+            "name": "interface-id",
+            "description": "Limit output to a single interface, e.g. GigabitEthernet0/1",
+            "required": false
+          }
+        ],
+        "sampleOutput": "GigabitEthernet0/1 is up, line protocol is up\n  Hardware is ..., address is ...\n  Input errors: 0, CRC: 0, frame: 0\n  5 minute input rate 1200 bits/sec, 2 packets/sec",
+        "fieldNotes": "The full version of show ip interface brief \u2014 go here once brief tells you something's wrong and you need error counters and rates to find out why."
+      }
+    },
+    {
+      "id": "cisco-ios.show-interfaces-status",
+      "title": "show interfaces status",
+      "aliases": [
+        "sh int status"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "interfaces",
+        "troubleshooting",
+        "layer1"
+      ],
+      "summary": "Compact table of port status, VLAN, duplex, and speed \u2014 switch platforms.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-interfaces"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show interfaces status",
+        "parameters": [],
+        "sampleOutput": "Port      Name    Status       Vlan     Duplex  Speed  Type\nGi0/1             connected    10       a-full  a-1000 10/100/1000BaseTX\nGi0/2             notconnect   1        auto    auto   10/100/1000BaseTX",
+        "fieldNotes": "Fastest way to see every port's VLAN and link state on one screen without scrolling through per-interface detail."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-interface-brief",
+      "title": "show ip interface brief",
+      "aliases": [
+        "sh ip int br",
+        "show ip int brief"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "interfaces",
+        "troubleshooting",
+        "layer3"
+      ],
+      "summary": "Quick status summary of all IP interfaces on a device.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-interfaces",
+        "cisco-ios.show-controllers"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Interface and Hardware Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/interface/command/ir-cr-book/ir-s5.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
+      },
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router# show ip interface brief",
+        "parameters": [],
+        "sampleOutput": "Interface            IP-Address   OK? Method Status  Protocol\nGigabitEthernet0/1   10.10.10.1   YES manual up      up\nGigabitEthernet0/2   unassigned   YES NVRAM  down    down",
+        "fieldNotes": "Use during outage triage to quickly verify which interfaces are up/down and have valid IPs before diving into deeper diagnostics."
+      }
+    },
+    {
+      "id": "cisco-ios.show-controllers",
+      "title": "show controllers",
+      "aliases": [
+        "sh controllers"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "interfaces",
+        "troubleshooting",
+        "layer1"
+      ],
+      "summary": "Low-level hardware/physical-layer status for an interface.",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "cisco-ios.show-interfaces"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Interface and Hardware Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show controllers [interface-id]",
+        "parameters": [
+          {
+            "name": "interface-id",
+            "description": "Interface to inspect",
+            "required": false
+          }
+        ],
+        "sampleOutput": "GigabitEthernet0/1\nHardware is ...\nTransceiver present, cable diagnostic pass",
+        "fieldNotes": "Reach for this when show interfaces looks normal but you still suspect a physical/cabling/transceiver problem."
+      }
+    },
+    {
+      "id": "cisco-ios.show-vlan-brief",
+      "title": "show vlan brief",
+      "aliases": [
+        "sh vlan br"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "vlans",
+        "troubleshooting",
+        "layer2"
+      ],
+      "summary": "Lists VLANs and which ports belong to each.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.vlan",
+        "cisco-ios.switchport-access-vlan"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show vlan brief",
+        "parameters": [],
+        "sampleOutput": "VLAN Name       Status   Ports\n1    default     active   Gi0/3, Gi0/4\n10   Engineering active   Gi0/1, Gi0/2",
+        "fieldNotes": "First place to check when a device isn't reaching others on what should be the same VLAN \u2014 confirm the port is actually a member."
+      }
+    },
+    {
+      "id": "cisco-ios.show-vlan-id",
+      "title": "show vlan id",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "vlans"
+      ],
+      "summary": "Shows detail for a single VLAN by number.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-vlan-brief"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show vlan id <vlan-id>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "Numeric VLAN identifier",
+            "required": true
+          }
+        ],
+        "sampleOutput": "VLAN Name       Status   Ports\n10   Engineering active   Gi0/1, Gi0/2",
+        "fieldNotes": "Same information as show vlan brief, filtered to one VLAN \u2014 useful once you already know which VLAN you're chasing."
+      }
+    },
+    {
+      "id": "cisco-ios.show-mac-address-table",
+      "title": "show mac address-table",
+      "aliases": [
+        "sh mac address-table"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "mac-address-table",
+        "troubleshooting",
+        "layer2"
+      ],
+      "summary": "Shows learned MAC addresses and the ports they were seen on.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-mac-address-table-dynamic"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show mac address-table",
+        "parameters": [],
+        "sampleOutput": "Vlan  Mac Address       Type     Ports\n10    0011.2233.4455    DYNAMIC  Gi0/1",
+        "fieldNotes": "Use to confirm which physical port a specific device is actually connected to, or to spot a MAC showing up on the wrong port."
+      }
+    },
+    {
+      "id": "cisco-ios.show-mac-address-table-dynamic",
+      "title": "show mac address-table dynamic",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "mac-address-table"
+      ],
+      "summary": "Filters the MAC address table to dynamically learned entries only.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.show-mac-address-table"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show mac address-table dynamic",
+        "parameters": [],
+        "sampleOutput": "Vlan  Mac Address       Type     Ports\n10    0011.2233.4455    DYNAMIC  Gi0/1",
+        "fieldNotes": "Excludes static/secure entries \u2014 useful when you specifically want what the switch learned on its own."
+      }
+    },
+    {
+      "id": "cisco-ios.show-cdp-neighbors",
+      "title": "show cdp neighbors",
+      "aliases": [
+        "sh cdp neigh"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "cdp-lldp",
+        "troubleshooting",
+        "layer2"
+      ],
+      "summary": "Lists directly connected Cisco devices discovered via CDP.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-lldp-neighbors"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show cdp neighbors",
+        "parameters": [],
+        "sampleOutput": "Device ID    Local Intrfce   Capability  Platform  Port ID\nSwitch-A     Gig 0/1         S I         WS-C2960  Gig 0/24",
+        "fieldNotes": "Useful for confirming physical topology matches what a diagram claims, especially in unfamiliar racks."
+      }
+    },
+    {
+      "id": "cisco-ios.show-lldp-neighbors",
+      "title": "show lldp neighbors",
+      "aliases": [
+        "sh lldp neigh"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "cdp-lldp"
+      ],
+      "summary": "Lists directly connected devices discovered via the vendor-neutral LLDP protocol.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-cdp-neighbors"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show lldp neighbors",
+        "parameters": [],
+        "sampleOutput": "Device ID    Local Intf    Hold-time  Capability  Port ID\nSrv-A        Gi0/2         120        B           eth0",
+        "fieldNotes": "Use instead of CDP when the neighbor is non-Cisco equipment \u2014 servers, non-Cisco switches, some phones."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-route",
+      "title": "show ip route",
+      "aliases": [
+        "sh ip route"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "routing",
+        "route",
+        "route-verification",
+        "troubleshooting",
+        "layer3"
+      ],
+      "summary": "Displays the current IP routing table.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.router-ospf",
+        "cisco-ios.ip-route"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/show_ip_route.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
+      },
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router# show ip route",
+        "parameters": [
+          {
+            "name": "[ip-address]",
+            "description": "Show the route for a specific destination only",
+            "required": false
+          }
+        ],
+        "sampleOutput": "Gateway of last resort is 192.168.1.1 to network 0.0.0.0\nO    10.0.0.0/8 [110/2] via 192.168.1.2, GigabitEthernet0/1\nC    192.168.1.0/24 is directly connected, GigabitEthernet0/1",
+        "fieldNotes": "The letter prefix (O, C, S, R) tells you how the route was learned \u2014 OSPF, connected, static, or RIP. Start here whenever traffic isn't reaching a destination it should."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-protocols",
+      "title": "show ip protocols",
+      "aliases": [
+        "sh ip prot"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "routing"
+      ],
+      "summary": "Shows which routing protocols are running and their key parameters.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-route"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip protocols",
+        "parameters": [],
+        "sampleOutput": "Routing Protocol is \"ospf 1\"\n  Router ID 1.1.1.1\n  Number of areas: 1 normal",
+        "fieldNotes": "Good first check when routes are missing but you're not sure if the protocol is even configured/running as expected."
+      }
+    },
+    {
+      "id": "cisco-ios.show-arp",
+      "title": "show arp",
+      "aliases": [
+        "sh arp"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "arp"
+      ],
+      "summary": "Displays the IP-to-MAC address resolution table.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show arp",
+        "parameters": [],
+        "sampleOutput": "Protocol  Address       Age (min)  Hardware Addr     Type  Interface\nInternet  10.10.10.5    12         0011.2233.4455    ARPA  Gi0/1",
+        "fieldNotes": "Use to confirm a host is actually resolvable at Layer 2 before assuming a routing problem."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-dhcp-binding",
+      "title": "show ip dhcp binding",
+      "aliases": [
+        "sh ip dhcp bind"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "dhcp",
+        "troubleshooting"
+      ],
+      "summary": "Lists active DHCP leases handed out by this device.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-dhcp-conflict"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing: DHCP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip dhcp binding",
+        "parameters": [],
+        "sampleOutput": "IP address      Client-ID          Lease expiration       Type\n10.10.10.50     0100.1122.3344.55  Jul 27 2026 09:14 AM   Automatic",
+        "fieldNotes": "Only relevant if this device is itself the DHCP server \u2014 confirms whether it actually issued the lease a client claims to have."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-nat-translations",
+      "title": "show ip nat translations",
+      "aliases": [
+        "sh ip nat trans"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "nat",
+        "troubleshooting"
+      ],
+      "summary": "Lists active NAT translation table entries.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-nat-statistics"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing: NAT Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip nat translations",
+        "parameters": [],
+        "sampleOutput": "Pro Inside global    Inside local     Outside local  Outside global\ntcp 203.0.113.5:1024 10.10.10.5:1024  198.51.100.9   198.51.100.9",
+        "fieldNotes": "Confirms whether traffic is actually being translated \u2014 an empty table when you expect entries usually means the NAT statement or ACL match isn't hitting."
+      }
+    },
+    {
+      "id": "cisco-ios.show-access-lists",
+      "title": "show access-lists",
+      "aliases": [
+        "sh access-lists",
+        "sh ip access-lists"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "acl",
+        "troubleshooting"
+      ],
+      "summary": "Displays configured ACLs and their per-line match counters.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-interface"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show access-lists [acl-name-or-number]",
+        "parameters": [
+          {
+            "name": "acl-name-or-number",
+            "description": "Limit output to one ACL",
+            "required": false
+          }
+        ],
+        "sampleOutput": "Standard IP access list 10\n    10 permit 10.10.10.0, wildcard bits 0.0.0.255 (2 matches)",
+        "fieldNotes": "The match counters are the key thing here \u2014 they tell you whether traffic is actually hitting the line you think it is."
+      }
+    },
+    {
+      "id": "cisco-ios.show-port-security",
+      "title": "show port-security",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "security"
+      ],
+      "summary": "Shows port security status and violation counts per interface.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-port-security"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show port-security [interface interface-id]",
+        "parameters": [
+          {
+            "name": "interface interface-id",
+            "description": "Limit output to one interface",
+            "required": false
+          }
+        ],
+        "sampleOutput": "Port      MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1     1              1            0                   Shutdown",
+        "fieldNotes": "Check this first when a port has gone err-disabled \u2014 a nonzero violation count confirms port security as the cause."
+      }
+    },
+    {
+      "id": "cisco-ios.show-processes-cpu",
+      "title": "show processes cpu",
+      "aliases": [
+        "sh proc cpu"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "cpu-memory"
+      ],
+      "summary": "Shows CPU utilization and the processes consuming it.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-memory-statistics"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show processes cpu",
+        "parameters": [],
+        "sampleOutput": "CPU utilization for five seconds: 12%/2%; one minute: 10%; five minutes: 9%\n PID  Runtime(ms)  Invoked  uSecs  5Sec  Process\n 142  4021         5521     728   3.1%  IP Input",
+        "fieldNotes": "Reach for this when a device feels sluggish or is dropping packets it shouldn't \u2014 high sustained CPU is a common root cause."
+      }
+    },
+    {
+      "id": "cisco-ios.show-memory-statistics",
+      "title": "show memory statistics",
+      "aliases": [
+        "sh mem"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "show",
+        "cpu-memory"
+      ],
+      "summary": "Shows memory pool usage and free/largest-available block sizes.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-processes-cpu"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show memory statistics",
+        "parameters": [],
+        "sampleOutput": "Head    Total(b)     Used(b)      Free(b)      Lowest(b)   Largest(b)\nProcessor  512000000  210000000    302000000    295000000   180000000",
+        "fieldNotes": "A shrinking 'Lowest' value over time is the classic signature of a memory leak, not just normal usage."
+      }
+    },
+    {
+      "id": "cisco-ios.configure-terminal",
+      "title": "configure terminal",
+      "aliases": [
+        "conf t"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "global-configuration"
+      ],
+      "summary": "Enters global configuration mode.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.hostname",
+        "cisco-ios.copy-running-config-startup-config"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/command/reference/cf_book/cf_c1.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
+      },
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router# configure terminal",
+        "parameters": [],
+        "sampleOutput": "Router(config)#",
+        "fieldNotes": "The prompt change to Router(config)# is the confirmation you're in the right mode. Almost every configuration block in this library assumes you're starting from here."
+      }
+    },
+    {
+      "id": "cisco-ios.hostname",
+      "title": "hostname",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "global-configuration"
+      ],
+      "summary": "Sets the device's displayed name and CLI prompt.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# hostname <name>",
+        "parameters": [
+          {
+            "name": "name",
+            "description": "New device hostname",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# hostname EdgeRouter1\nEdgeRouter1(config)#",
+        "fieldNotes": "Usually one of the first commands run on a freshly imaged device \u2014 the prompt updates immediately, confirming it took."
+      }
+    },
+    {
+      "id": "cisco-ios.banner-motd",
+      "title": "banner motd",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "global-configuration"
+      ],
+      "summary": "Sets the message-of-the-day banner shown before login.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# banner motd # <message> #",
+        "parameters": [
+          {
+            "name": "message",
+            "description": "Banner text; the delimiter character (# here) can't appear inside the message",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# banner motd # Authorized access only #",
+        "fieldNotes": "Commonly used to display a legal warning banner \u2014 the delimiter character just has to be something not used in the message itself."
+      }
+    },
+    {
+      "id": "cisco-ios.service-password-encryption",
+      "title": "service password-encryption",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "global-configuration"
+      ],
+      "summary": "Encrypts plaintext passwords stored in the running configuration.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.enable-secret"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# service password-encryption",
+        "parameters": [],
+        "sampleOutput": "Router(config)# service password-encryption",
+        "fieldNotes": "Weak (type 7) obfuscation, not real security \u2014 it stops shoulder-surfing a config file, not a determined attacker. Use enable secret for anything that actually matters."
+      }
+    },
+    {
+      "id": "cisco-ios.enable-secret",
+      "title": "enable secret",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "global-configuration"
+      ],
+      "summary": "Sets a strongly hashed password for privileged EXEC mode.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.service-password-encryption"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# enable secret <password>",
+        "parameters": [
+          {
+            "name": "password",
+            "description": "Password protecting privileged EXEC (enable) mode",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# enable secret ********",
+        "fieldNotes": "Always takes precedence over the older enable password command if both are set \u2014 don't rely on the older one."
+      }
+    },
+    {
+      "id": "cisco-ios.username",
+      "title": "username",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "user-accounts"
+      ],
+      "summary": "Creates a local user account for authentication.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.login-local",
+        "cisco-ios.privilege"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# username <name> privilege <level> secret <password>",
+        "parameters": [
+          {
+            "name": "name",
+            "description": "Account username",
+            "required": true
+          },
+          {
+            "name": "privilege",
+            "description": "Privilege level, 0-15",
+            "required": false
+          },
+          {
+            "name": "secret",
+            "description": "Hashed password",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# username jdoe privilege 15 secret ********",
+        "fieldNotes": "Pairs with login local on the vty/console lines \u2014 creating the account alone doesn't enable local authentication."
+      }
+    },
+    {
+      "id": "cisco-ios.privilege",
+      "title": "privilege",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "user-accounts"
+      ],
+      "summary": "Assigns command access levels to a privilege tier.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.username"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# privilege exec level <level> <command>",
+        "parameters": [
+          {
+            "name": "level",
+            "description": "Privilege level being granted access, 0-15",
+            "required": true
+          },
+          {
+            "name": "command",
+            "description": "Command being permitted at that level",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# privilege exec level 5 show running-config",
+        "fieldNotes": "Lets you grant a mid-level account access to specific commands without handing out full level-15 (enable) access."
+      }
+    },
+    {
+      "id": "cisco-ios.line-password",
+      "title": "password (line)",
+      "aliases": [
+        "password"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "user-accounts"
+      ],
+      "summary": "Sets a plaintext-entry password for a console or VTY line.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.login-local"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-line)# password <password>",
+        "parameters": [
+          {
+            "name": "password",
+            "description": "Password required to access this line",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# line console 0\nRouter(config-line)# password ********",
+        "fieldNotes": "Only takes effect if the line also has login configured \u2014 without it, the password is set but never asked for."
+      }
+    },
+    {
+      "id": "cisco-ios.login-local",
+      "title": "login local",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "user-accounts"
+      ],
+      "summary": "Configures a line to authenticate against local usernames instead of a line password.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.username"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.line-password"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-line)# login local",
+        "parameters": [],
+        "sampleOutput": "Router(config)# line vty 0 4\nRouter(config-line)# login local",
+        "fieldNotes": "Requires at least one username account to already exist \u2014 enabling this with no local accounts configured will lock out line access."
+      }
+    },
+    {
+      "id": "cisco-ios.crypto-key-generate-rsa",
+      "title": "crypto key generate rsa",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "ssh-management"
+      ],
+      "summary": "Generates the RSA key pair required for SSH to function.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.hostname"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.ip-ssh-version"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# crypto key generate rsa",
+        "parameters": [],
+        "sampleOutput": "The name for the keys will be: EdgeRouter1.domain.com\nHow many bits in the modulus [512]: 2048",
+        "fieldNotes": "Requires a hostname and domain name to already be set \u2014 the command will refuse to generate keys without both."
+      }
+    },
+    {
+      "id": "cisco-ios.ip-ssh-version",
+      "title": "ip ssh version 2",
+      "aliases": [
+        "ip ssh version"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "ssh-management"
+      ],
+      "summary": "Restricts SSH access to version 2 only.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.crypto-key-generate-rsa"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# ip ssh version 2",
+        "parameters": [],
+        "sampleOutput": "Router(config)# ip ssh version 2",
+        "fieldNotes": "SSHv1 has known weaknesses \u2014 this should be considered mandatory, not optional, on any device reachable outside a fully trusted network."
+      }
+    },
+    {
+      "id": "cisco-ios.interface",
+      "title": "interface",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "interface-configuration"
+      ],
+      "summary": "Enters configuration mode for a specific physical or logical interface.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.ip-address",
+        "cisco-ios.no-shutdown"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Interface and Hardware Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# interface <interface-id>",
+        "parameters": [
+          {
+            "name": "interface-id",
+            "description": "e.g. GigabitEthernet0/1, Vlan10, Loopback0",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# interface GigabitEthernet0/1\nRouter(config-if)#",
+        "fieldNotes": "Almost every other interface-level command (ip address, switchport, no shutdown) assumes you're already here."
+      }
+    },
+    {
+      "id": "cisco-ios.ip-address",
+      "title": "ip address",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "interface-configuration"
+      ],
+      "summary": "Assigns an IP address and subnet mask to an interface.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.no-shutdown"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-if)# ip address <address> <subnet-mask>",
+        "parameters": [
+          {
+            "name": "address",
+            "description": "IPv4 address",
+            "required": true
+          },
+          {
+            "name": "subnet-mask",
+            "description": "Dotted-decimal subnet mask, e.g. 255.255.255.0",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config-if)# ip address 10.10.10.1 255.255.255.0",
+        "fieldNotes": "The interface still needs no shutdown afterward \u2014 a freshly configured IP won't come up on its own if the interface is administratively down."
+      }
+    },
+    {
+      "id": "cisco-ios.no-shutdown",
+      "title": "no shutdown",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "interface-configuration"
+      ],
+      "summary": "Administratively enables an interface.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.ip-address"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Interface and Hardware Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-if)# no shutdown",
+        "parameters": [],
+        "sampleOutput": "Router(config-if)# no shutdown\n%LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up",
+        "fieldNotes": "Interfaces on most Cisco platforms ship administratively down by default \u2014 this is the single most common reason a freshly configured interface doesn't come up."
+      }
+    },
+    {
+      "id": "cisco-ios.copy-running-config-startup-config",
+      "title": "copy running-config startup-config",
+      "aliases": [
+        "copy run start",
+        "wr mem"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "save-configuration"
+      ],
+      "summary": "Saves the active configuration so it persists across a reload.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.reload"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# copy running-config startup-config",
+        "parameters": [],
+        "sampleOutput": "Destination filename [startup-config]?\nBuilding configuration...\n[OK]",
+        "fieldNotes": "Easy to forget after a working change \u2014 an unsaved config is gone entirely on the next reload or power loss."
+      }
+    },
+    {
+      "id": "cisco-ios.erase-startup-config",
+      "title": "erase startup-config",
+      "aliases": [
+        "write erase"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "factory-reset"
+      ],
+      "summary": "Deletes the saved startup configuration.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.reload"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# erase startup-config",
+        "parameters": [],
+        "sampleOutput": "Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]",
+        "fieldNotes": "Doesn't affect the currently running config until the next reload \u2014 the device keeps working normally right up until you reload it."
+      }
+    },
+    {
+      "id": "cisco-ios.reload",
+      "title": "reload",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "config",
+        "factory-reset",
+        "troubleshooting",
+        "recovery"
+      ],
+      "summary": "Restarts the device.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.erase-startup-config",
+        "cisco-ios.show-version"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# reload",
+        "parameters": [],
+        "sampleOutput": "Proceed with reload? [confirm]",
+        "fieldNotes": "Always confirm the config was saved (copy running-config startup-config) before this, unless the whole point is to discard unsaved changes."
+      }
+    },
+    {
+      "id": "cisco-ios.vlan",
+      "title": "vlan",
+      "aliases": [
+        "vlan vlan-id"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "vlan-configuration",
+        "config"
+      ],
+      "summary": "Creates a VLAN and enters VLAN configuration mode.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.switchport-access-vlan",
+        "cisco-ios.show-vlan-brief"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-16/command_reference/b_1716_9500_cr/vlan_commands.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
+      },
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router(config)# vlan <vlan-id>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "Numeric identifier, 1-4094",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# vlan 10\nRouter(config-vlan)#",
+        "fieldNotes": "Creating the VLAN here doesn't assign it to any port \u2014 that's a separate step on the interface itself."
+      }
+    },
+    {
+      "id": "cisco-ios.vlan-name",
+      "title": "name (VLAN)",
+      "aliases": [
+        "name"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "vlan-configuration"
+      ],
+      "summary": "Assigns a descriptive name to a VLAN.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.vlan"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-vlan)# name <vlan-name>",
+        "parameters": [
+          {
+            "name": "vlan-name",
+            "description": "Descriptive label, no spaces",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config-vlan)# name Engineering",
+        "fieldNotes": "Purely cosmetic, but the difference between show vlan brief being self-explanatory and being a list of numbers nobody remembers."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-mode-access",
+      "title": "switchport mode access",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "vlan-configuration"
+      ],
+      "summary": "Sets a port to access mode, carrying a single VLAN.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.switchport-access-vlan"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport mode access",
+        "parameters": [],
+        "sampleOutput": "Switch(config-if)# switchport mode access",
+        "fieldNotes": "Do this before switchport access vlan \u2014 some platforms won't apply the VLAN assignment correctly on a port still in dynamic/trunk-negotiating mode."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-access-vlan",
+      "title": "switchport access vlan",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "vlan-configuration"
+      ],
+      "summary": "Assigns an access port to a specific VLAN.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.switchport-mode-access"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.vlan"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport access vlan <vlan-id>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "VLAN this port should belong to",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# switchport access vlan 10",
+        "fieldNotes": "The VLAN must already exist (via the vlan command) \u2014 assigning a port to a nonexistent VLAN silently fails on some platforms."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-mode-trunk",
+      "title": "switchport mode trunk",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "trunking"
+      ],
+      "summary": "Sets a port to trunk mode, carrying multiple VLANs.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.switchport-trunk-allowed-vlan",
+        "cisco-ios.switchport-trunk-native-vlan"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport mode trunk",
+        "parameters": [],
+        "sampleOutput": "Switch(config-if)# switchport mode trunk",
+        "fieldNotes": "Both ends of the link need to agree on trunk mode \u2014 a mismatch here is a common cause of VLANs not passing between switches."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-trunk-allowed-vlan",
+      "title": "switchport trunk allowed vlan",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "trunking"
+      ],
+      "summary": "Restricts which VLANs are permitted across a trunk.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-mode-trunk"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport trunk allowed vlan <vlan-list>",
+        "parameters": [
+          {
+            "name": "vlan-list",
+            "description": "Comma/range list of VLANs, e.g. 10,20,30-40",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# switchport trunk allowed vlan 10,20,30",
+        "fieldNotes": "Without this, a trunk carries every VLAN by default \u2014 tightening it is a common and worthwhile hardening step."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-trunk-native-vlan",
+      "title": "switchport trunk native vlan",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "trunking"
+      ],
+      "summary": "Sets the untagged VLAN on a trunk port.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-mode-trunk"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport trunk native vlan <vlan-id>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "VLAN to carry untagged on this trunk",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# switchport trunk native vlan 99",
+        "fieldNotes": "Must match on both ends of the trunk \u2014 a native VLAN mismatch is a classic, hard-to-spot cause of intermittent connectivity issues and a VLAN mismatch warning in logs."
+      }
+    },
+    {
+      "id": "cisco-ios.spanning-tree-mode",
+      "title": "spanning-tree mode",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "spanning-tree"
+      ],
+      "summary": "Selects the spanning-tree protocol variant used device-wide.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.spanning-tree-vlan-priority"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config)# spanning-tree mode <mode>",
+        "parameters": [
+          {
+            "name": "mode",
+            "description": "e.g. pvst, rapid-pvst, mst",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config)# spanning-tree mode rapid-pvst",
+        "fieldNotes": "Should match across the whole switched network \u2014 mixing modes between switches can cause slower convergence or unexpected topology changes."
+      }
+    },
+    {
+      "id": "cisco-ios.spanning-tree-vlan-priority",
+      "title": "spanning-tree vlan priority",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "spanning-tree"
+      ],
+      "summary": "Sets bridge priority for a VLAN to influence root bridge election.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.spanning-tree-mode"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.show-spanning-tree"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config)# spanning-tree vlan <vlan-id> priority <priority>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "VLAN this priority applies to",
+            "required": true
+          },
+          {
+            "name": "priority",
+            "description": "Lower value wins root election; must be a multiple of 4096",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config)# spanning-tree vlan 10 priority 4096",
+        "fieldNotes": "Deliberately forcing a specific, stable core switch to be root is usually better than letting election happen by default MAC address tiebreak."
+      }
+    },
+    {
+      "id": "cisco-ios.channel-group",
+      "title": "channel-group",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "etherchannel"
+      ],
+      "summary": "Adds a physical interface to an EtherChannel bundle.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.interface-port-channel"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# channel-group <number> mode <mode>",
+        "parameters": [
+          {
+            "name": "number",
+            "description": "Port-channel number this interface joins",
+            "required": true
+          },
+          {
+            "name": "mode",
+            "description": "e.g. active (LACP), on, desirable (PAgP)",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# channel-group 1 mode active",
+        "fieldNotes": "All member interfaces need matching speed, duplex, and mode settings \u2014 mismatches are the most common reason a channel fails to form."
+      }
+    },
+    {
+      "id": "cisco-ios.interface-port-channel",
+      "title": "interface port-channel",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "etherchannel"
+      ],
+      "summary": "Enters configuration mode for the logical EtherChannel interface.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.channel-group"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config)# interface port-channel <number>",
+        "parameters": [
+          {
+            "name": "number",
+            "description": "Port-channel number, matching the channel-group number",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config)# interface port-channel 1\nSwitch(config-if)#",
+        "fieldNotes": "Settings applied here (like switchport mode trunk) apply to the whole bundle rather than needing to be repeated per member interface."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-port-security",
+      "title": "switchport port-security",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "port-security"
+      ],
+      "summary": "Enables port security on an access interface.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-mode-access"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.switchport-port-security-maximum",
+        "cisco-ios.show-port-security"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport port-security",
+        "parameters": [],
+        "sampleOutput": "Switch(config-if)# switchport port-security",
+        "fieldNotes": "Only works on ports already set to switchport mode access \u2014 it doesn't apply to trunk or dynamic ports."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-port-security-maximum",
+      "title": "switchport port-security maximum",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "port-security"
+      ],
+      "summary": "Sets the maximum number of allowed MAC addresses on a secured port.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-port-security"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Security Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport port-security maximum <count>",
+        "parameters": [
+          {
+            "name": "count",
+            "description": "Maximum allowed secure MAC addresses, default is 1",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# switchport port-security maximum 2",
+        "fieldNotes": "A common value is 2 on a port feeding an IP phone with a PC daisy-chained behind it \u2014 one for the phone, one for the PC."
+      }
+    },
+    {
+      "id": "cisco-ios.switchport-voice-vlan",
+      "title": "switchport voice vlan",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "voice-vlan"
+      ],
+      "summary": "Assigns a separate VLAN for voice traffic on an access port.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.switchport-mode-access"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# switchport voice vlan <vlan-id>",
+        "parameters": [
+          {
+            "name": "vlan-id",
+            "description": "VLAN carrying voice traffic from an attached IP phone",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# switchport voice vlan 100",
+        "fieldNotes": "Works alongside the port's regular access VLAN \u2014 the phone and a PC plugged into the phone's pass-through port end up on two different VLANs over one cable."
+      }
+    },
+    {
+      "id": "cisco-ios.storm-control-broadcast-level",
+      "title": "storm-control broadcast level",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "switch",
+        "storm-control"
+      ],
+      "summary": "Limits broadcast traffic on a port to a percentage of bandwidth.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.interface"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config-if)# storm-control broadcast level <percentage>",
+        "parameters": [
+          {
+            "name": "percentage",
+            "description": "Threshold as a percentage of interface bandwidth",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config-if)# storm-control broadcast level 20",
+        "fieldNotes": "Useful protection against a broadcast storm from a misconfigured device or an accidental loop, without shutting the port down outright."
+      }
+    },
+    {
+      "id": "cisco-ios.ip-route",
+      "title": "ip route",
+      "aliases": [
+        "ip route 0.0.0.0 0.0.0.0"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "static-routing"
+      ],
+      "summary": "Adds a static route, including the default route (0.0.0.0/0).",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-route",
+        "cisco-ios.ip-default-gateway"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# ip route <destination-network> <subnet-mask> <next-hop>",
+        "parameters": [
+          {
+            "name": "destination-network",
+            "description": "Network being routed to; 0.0.0.0 for a default route",
+            "required": true
+          },
+          {
+            "name": "subnet-mask",
+            "description": "Mask for the destination network; 0.0.0.0 for a default route",
+            "required": true
+          },
+          {
+            "name": "next-hop",
+            "description": "Next-hop IP address or exit interface",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# ip route 0.0.0.0 0.0.0.0 192.168.1.1",
+        "fieldNotes": "The same command handles both a specific static route and the default route \u2014 0.0.0.0 0.0.0.0 as the destination is just the 'match everything else' case."
+      }
+    },
+    {
+      "id": "cisco-ios.ip-default-gateway",
+      "title": "ip default-gateway",
+      "aliases": [
+        "default gateway"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "static-routing"
+      ],
+      "summary": "Sets the default gateway on a device not running IP routing (e.g. a Layer 2 switch).",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.ip-route"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch(config)# ip default-gateway <ip-address>",
+        "parameters": [
+          {
+            "name": "ip-address",
+            "description": "Gateway address for management traffic to leave the local subnet",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Switch(config)# ip default-gateway 10.10.10.1",
+        "fieldNotes": "Only relevant on switches with IP routing disabled \u2014 a router or a switch with 'ip routing' enabled uses ip route instead."
+      }
+    },
+    {
+      "id": "cisco-ios.router-ospf",
+      "title": "router ospf",
+      "aliases": [
+        "router ospf process-id"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "ospf",
+        "config"
+      ],
+      "summary": "Enables OSPF routing and enters router configuration mode for it.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-route",
+        "cisco-ios.show-ip-protocols"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: OSPF Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/command/iro-cr-book/ospf-i1.html",
+        "dateReviewed": null,
+        "reviewedBy": null
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router(config)# router ospf <process-id>",
+        "parameters": [
+          {
+            "name": "process-id",
+            "description": "Locally significant identifier, 1-65535 \u2014 doesn't need to match between routers",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# router ospf 1\nRouter(config-router)#",
+        "fieldNotes": "The process-id is local only \u2014 it's a common misconception that it needs to match across the network. What has to match is the area number on the network statements that follow. Command existence and purpose confirmed against this real page (a related-commands entry: \"Configures an OSPF routing process\"; a nested example elsewhere on the page literally uses \"router ospf 1\"). The process-id 1-65535 range specifically was NOT re-confirmed from source text in this pass - the formal syntax table was past where the page fetch truncated. Held at needs-review pending a direct re-check of that specific range."
+      }
+    },
+    {
+      "id": "cisco-ios.ospf-router-id",
+      "title": "router-id",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "ospf"
+      ],
+      "summary": "Manually sets the OSPF router ID instead of letting it be auto-derived.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.router-ospf"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: OSPF Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# router-id <ip-address>",
+        "parameters": [
+          {
+            "name": "ip-address",
+            "description": "Router ID, formatted like an IP address but not required to be assigned to any interface",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config-router)# router-id 1.1.1.1",
+        "fieldNotes": "Setting this explicitly avoids the router ID silently changing if a loopback or interface it was auto-derived from goes down."
+      }
+    },
+    {
+      "id": "cisco-ios.ospf-network",
+      "title": "network (OSPF)",
+      "aliases": [
+        "network"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "ospf"
+      ],
+      "summary": "Enables OSPF on interfaces matching a network and assigns them to an area.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.router-ospf"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.passive-interface"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: OSPF Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# network <address> <wildcard-mask> area <area-id>",
+        "parameters": [
+          {
+            "name": "address",
+            "description": "Network address to match against interface IPs",
+            "required": true
+          },
+          {
+            "name": "wildcard-mask",
+            "description": "Inverted subnet mask, e.g. 0.0.0.255",
+            "required": true
+          },
+          {
+            "name": "area-id",
+            "description": "OSPF area \u2014 this one must match between neighboring routers",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config-router)# network 10.10.10.0 0.0.0.255 area 0",
+        "fieldNotes": "Wildcard masks are inverted from subnet masks and trip up a lot of people \u2014 0.0.0.255 matches a /24, not 255.255.255.0."
+      }
+    },
+    {
+      "id": "cisco-ios.passive-interface",
+      "title": "passive-interface",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "ospf"
+      ],
+      "summary": "Suppresses routing protocol hellos on an interface while still advertising its network.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.ospf-network"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: OSPF Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# passive-interface <interface-id>",
+        "parameters": [
+          {
+            "name": "interface-id",
+            "description": "Interface that should stop sending OSPF hellos",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config-router)# passive-interface GigabitEthernet0/2",
+        "fieldNotes": "Standard practice on user-facing interfaces (e.g. toward an access-layer VLAN) \u2014 no reason to form a neighbor relationship with anything connected there."
+      }
+    },
+    {
+      "id": "cisco-ios.default-information-originate",
+      "title": "default-information originate",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "ospf"
+      ],
+      "summary": "Advertises a locally configured default route into OSPF.",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "cisco-ios.router-ospf",
+        "cisco-ios.ip-route"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: OSPF Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# default-information originate",
+        "parameters": [],
+        "sampleOutput": "Router(config-router)# default-information originate",
+        "fieldNotes": "The router needs an actual default route in its own routing table already (typically a static one) before this will advertise anything."
+      }
+    },
+    {
+      "id": "cisco-ios.router-rip",
+      "title": "router rip",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "rip"
+      ],
+      "summary": "Enables RIP routing and enters router configuration mode for it.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.rip-version"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: RIP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# router rip",
+        "parameters": [],
+        "sampleOutput": "Router(config)# router rip\nRouter(config-router)#",
+        "fieldNotes": "Largely legacy at this point \u2014 still shown here because it's a common teaching protocol, not because it's a common production choice."
+      }
+    },
+    {
+      "id": "cisco-ios.rip-version",
+      "title": "version (RIP)",
+      "aliases": [
+        "version 2"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "rip"
+      ],
+      "summary": "Sets RIP to version 2, enabling classless (VLSM-aware) routing.",
+      "difficulty": "beginner",
+      "prerequisites": [
+        "cisco-ios.router-rip"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: RIP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# version 2",
+        "parameters": [],
+        "sampleOutput": "Router(config-router)# version 2",
+        "fieldNotes": "RIPv1 doesn't carry subnet mask information \u2014 always use version 2 unless you have a specific legacy reason not to."
+      }
+    },
+    {
+      "id": "cisco-ios.router-eigrp",
+      "title": "router eigrp",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "eigrp"
+      ],
+      "summary": "Enables EIGRP routing and enters router configuration mode for it.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.configure-terminal"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.eigrp-network"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: EIGRP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config)# router eigrp <as-number>",
+        "parameters": [
+          {
+            "name": "as-number",
+            "description": "Autonomous system number \u2014 must match on all EIGRP routers in the same domain",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Router(config)# router eigrp 100\nRouter(config-router)#",
+        "fieldNotes": "Unlike OSPF's process-id, the EIGRP AS number must actually match between neighbors, or they won't form an adjacency at all."
+      }
+    },
+    {
+      "id": "cisco-ios.eigrp-network",
+      "title": "network (EIGRP)",
+      "aliases": [
+        "network"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "eigrp"
+      ],
+      "summary": "Enables EIGRP on interfaces matching a network statement.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.router-eigrp"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing: EIGRP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router(config-router)# network <address> [wildcard-mask]",
+        "parameters": [
+          {
+            "name": "address",
+            "description": "Network address to match",
+            "required": true
+          },
+          {
+            "name": "wildcard-mask",
+            "description": "Optional inverted mask for more precise matching",
+            "required": false
+          }
+        ],
+        "sampleOutput": "Router(config-router)# network 10.0.0.0",
+        "fieldNotes": "Without a wildcard mask, this matches the entire classful network \u2014 usually worth specifying one for anything but the simplest lab setup."
+      }
+    },
+    {
+      "id": "cisco-ios.traceroute",
+      "title": "traceroute",
+      "aliases": [
+        "trace"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "route-verification",
+        "connectivity-testing"
+      ],
+      "summary": "Shows the hop-by-hop path packets take to a destination.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.ping",
+        "cisco-ios.show-ip-route"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Routing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# traceroute <destination>",
+        "parameters": [
+          {
+            "name": "destination",
+            "description": "Target hostname or IP address",
+            "required": true
+          }
+        ],
+        "sampleOutput": "1  192.168.1.1  4 msec  4 msec  4 msec\n2  10.0.0.2     8 msec  8 msec  8 msec",
+        "fieldNotes": "Use once ping fails or succeeds unexpectedly and you need to know which specific hop the path breaks at."
+      }
+    },
+    {
+      "id": "cisco-ios.ping",
+      "title": "ping",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "connectivity-testing"
+      ],
+      "summary": "Tests basic reachability to a destination using ICMP echo.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.traceroute"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# ping <destination>",
+        "parameters": [
+          {
+            "name": "destination",
+            "description": "Target hostname or IP address",
+            "required": true
+          }
+        ],
+        "sampleOutput": "Sending 5, 100-byte ICMP Echos to 10.10.10.5, timeout is 2 seconds:\n!!!!!\nSuccess rate is 100 percent (5/5)",
+        "fieldNotes": "Usually the very first command run in any connectivity troubleshooting \u2014 establishes whether the problem is reachability at all before looking anywhere more specific."
+      }
+    },
+    {
+      "id": "cisco-ios.telnet",
+      "title": "telnet",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "route",
+        "connectivity-testing"
+      ],
+      "summary": "Opens a Telnet session to a remote device, or tests a specific TCP port.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.ping"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# telnet <destination> [port]",
+        "parameters": [
+          {
+            "name": "destination",
+            "description": "Target hostname or IP address",
+            "required": true
+          },
+          {
+            "name": "port",
+            "description": "Optional TCP port \u2014 a common trick for testing whether a specific port is open/listening",
+            "required": false
+          }
+        ],
+        "sampleOutput": "Router# telnet 10.10.10.5 80\nTrying 10.10.10.5, 80 ... Open",
+        "fieldNotes": "Telnet itself is insecure and shouldn't be used for actual remote management (use SSH) \u2014 but as a quick 'is this port open' test it's still genuinely useful."
+      }
+    },
+    {
+      "id": "cisco-ios.show-spanning-tree",
+      "title": "show spanning-tree",
+      "aliases": [
+        "sh span"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "layer2"
+      ],
+      "summary": "Shows spanning-tree state, root bridge, and port roles.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.spanning-tree-vlan-priority"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS LAN Switching Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Switch# show spanning-tree",
+        "parameters": [],
+        "sampleOutput": "VLAN0010\n  Root ID    Priority 4096\n             Address   0011.2233.4455\nGi0/1  Root FWD 19  128.1  P2p",
+        "fieldNotes": "Check port roles/states here whenever a switched network is doing something unexpected after a topology change \u2014 a port stuck in blocking is a common surprise."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-dhcp-conflict",
+      "title": "show ip dhcp conflict",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "dhcp"
+      ],
+      "summary": "Lists IP addresses the DHCP server detected as already in use when it tried to assign them.",
+      "difficulty": "intermediate",
+      "prerequisites": [
+        "cisco-ios.show-ip-dhcp-binding"
+      ],
+      "relatedBlocks": [],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing: DHCP Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip dhcp conflict",
+        "parameters": [],
+        "sampleOutput": "IP address      Detection method  Detection time\n10.10.10.50     Ping              Jul 26 2026 09:00 AM",
+        "fieldNotes": "A nonempty list here is a strong signal of a static IP colliding with the DHCP pool, not a DHCP server malfunction."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-nat-statistics",
+      "title": "show ip nat statistics",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "nat"
+      ],
+      "summary": "Shows NAT configuration summary and translation activity counters.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-nat-translations"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing: NAT Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip nat statistics",
+        "parameters": [],
+        "sampleOutput": "Total active translations: 12\nOutside interfaces: GigabitEthernet0/0\nInside interfaces: GigabitEthernet0/1",
+        "fieldNotes": "Confirms inside/outside interfaces are actually assigned as expected \u2014 a common NAT misconfiguration is simply having them backwards."
+      }
+    },
+    {
+      "id": "cisco-ios.show-ip-interface",
+      "title": "show ip interface",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "acl"
+      ],
+      "summary": "Shows detailed per-interface IP configuration, including which ACLs are applied.",
+      "difficulty": "intermediate",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-access-lists"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS IP Addressing Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show ip interface <interface-id>",
+        "parameters": [
+          {
+            "name": "interface-id",
+            "description": "Interface to inspect",
+            "required": true
+          }
+        ],
+        "sampleOutput": "GigabitEthernet0/1 is up, line protocol is up\n  Outgoing access list is 101\n  Inbound  access list is not set",
+        "fieldNotes": "Not the same as show ip interface brief \u2014 this is the detailed version, and it's the fastest way to confirm which ACL is actually applied to an interface and in which direction."
+      }
+    },
+    {
+      "id": "cisco-ios.terminal-monitor",
+      "title": "terminal monitor",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "logging"
+      ],
+      "summary": "Sends console log/debug output to the current terminal (SSH/Telnet) session.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-logging",
+        "cisco-ios.debug-ip-packet"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# terminal monitor",
+        "parameters": [],
+        "sampleOutput": "Router# terminal monitor",
+        "fieldNotes": "Without this, debug output only appears on the physical console \u2014 a very common 'why isn't debug showing anything' question over SSH."
+      }
+    },
+    {
+      "id": "cisco-ios.debug-ip-packet",
+      "title": "debug ip packet",
+      "aliases": [],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "debug"
+      ],
+      "summary": "Traces IP packets processed by the router in real time.",
+      "difficulty": "advanced",
+      "prerequisites": [
+        "cisco-ios.terminal-monitor"
+      ],
+      "relatedBlocks": [
+        "cisco-ios.undebug-all"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# debug ip packet [access-list]",
+        "parameters": [
+          {
+            "name": "access-list",
+            "description": "Optional ACL number to limit output to matching traffic only",
+            "required": false
+          }
+        ],
+        "sampleOutput": "IP: s=10.10.10.5 (Gi0/1), d=10.10.20.5 (Gi0/2), len 100, forward",
+        "fieldNotes": "Genuinely dangerous on a busy production router without an access-list filter \u2014 unfiltered, it can generate enough output to spike CPU and make the device unresponsive."
+      }
+    },
+    {
+      "id": "cisco-ios.undebug-all",
+      "title": "undebug all",
+      "aliases": [
+        "u all",
+        "no debug all"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "debug"
+      ],
+      "summary": "Turns off all active debug output.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.debug-ip-packet"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# undebug all",
+        "parameters": [],
+        "sampleOutput": "Router# undebug all\nAll possible debugging has been turned off",
+        "fieldNotes": "Run this immediately after any debug session \u2014 forgetting to turn off debug on a production device is a well-known way to cause a self-inflicted outage."
+      }
+    },
+    {
+      "id": "cisco-ios.show-version",
+      "title": "show version",
+      "aliases": [
+        "sh ver"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "recovery"
+      ],
+      "summary": "Shows IOS version, uptime, hardware, and the last reload reason.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.reload"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Fundamentals Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "[TBD]",
+        "dateReviewed": "2026-07-26"
+      },
+      "reviewStatus": "needs-review",
+      "lastReviewed": "2026-07-26",
+      "content": {
+        "syntax": "Router# show version",
+        "parameters": [],
+        "sampleOutput": "Cisco IOS Software, Version 15.2\nRouter uptime is 4 weeks, 2 days\nLast reload reason: power-on",
+        "fieldNotes": "After any unplanned outage, the 'last reload reason' line is often the fastest way to tell whether a device crashed, lost power, or was reloaded intentionally."
+      }
+    },
+    {
+      "id": "cisco-ios.show-logging",
+      "title": "show logging",
+      "aliases": [
+        "sh log"
+      ],
+      "domain": "cisco-ios",
+      "blockType": "invokable",
+      "tags": [
+        "troubleshooting",
+        "logging"
+      ],
+      "summary": "Displays the contents of the logging buffer and current logging configuration.",
+      "difficulty": "beginner",
+      "prerequisites": [],
+      "relatedBlocks": [
+        "cisco-ios.show-ip-interface-brief"
+      ],
+      "sourceOfTruth": {
+        "title": "Cisco IOS Network Management Command Reference",
+        "publisher": "Cisco",
+        "version": null,
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/command/reference/cf_book/cf_s2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
+      },
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
+      "content": {
+        "syntax": "Router# show logging",
+        "parameters": [],
+        "sampleOutput": "Syslog logging: enabled\n*Jul 26 14:02:11: %LINK-3-UPDOWN: Interface GigabitEthernet0/2, changed state to down",
+        "fieldNotes": "This is usually the first command to run when something changed and nobody knows why \u2014 the timestamped events often show the root cause directly."
+      }
+    }
+  ]
+}
