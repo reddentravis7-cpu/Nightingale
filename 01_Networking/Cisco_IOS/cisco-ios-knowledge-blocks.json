@@ -24,12 +24,12 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show users",
         "parameters": [],
         "sampleOutput": "    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 00:00:00\n   1 vty 0     admin      idle                 00:04:12   10.10.10.5",
-        "fieldNotes": "Useful for confirming who else is on the box before making a change, or during an incident to see who else might be active."
+        "fieldNotes": "Useful for confirming who else is on the box before making a change, or during an incident to see who else might be active. Command's existence in the Cisco IOS Configuration Fundamentals Command Reference is corroborated by a WebSearch snippet, but the snippet was thin (described \"show users all\" specifically, not clearly the base command's behavior) and I could not locate the exact chapter page to pull direct body text this pass. Held pending a direct page confirmation."
       }
     },
     {
@@ -56,12 +56,12 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show clock",
         "parameters": [],
         "sampleOutput": "14:32:07.481 UTC Sun Jul 26 2026",
-        "fieldNotes": "Check this before trusting timestamps in logs \u2014 an unset clock makes show logging output misleading."
+        "fieldNotes": "Check this before trusting timestamps in logs \u2014 an unset clock makes show logging output misleading. A WebSearch snippet quotes real cisco.com content matching this block closely (\"show clock command in User Exec mode or Privileged Exec mode...no arguments or keywords\"), but I could not locate the exact command-reference chapter page to confirm directly via full body text this pass - the quote's source page wasn't pinned down precisely. Held pending that direct confirmation, not because the content looks wrong."
       }
     },
     {
@@ -84,11 +84,12 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/command/reference/cf_book/cf_s2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show history",
         "parameters": [],
@@ -125,7 +126,7 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show interfaces [interface-id]",
         "parameters": [
@@ -136,7 +137,7 @@
           }
         ],
         "sampleOutput": "GigabitEthernet0/1 is up, line protocol is up\n  Hardware is ..., address is ...\n  Input errors: 0, CRC: 0, frame: 0\n  5 minute input rate 1200 bits/sec, 2 packets/sec",
-        "fieldNotes": "The full version of show ip interface brief \u2014 go here once brief tells you something's wrong and you need error counters and rates to find out why."
+        "fieldNotes": "The full version of show ip interface brief \u2014 go here once brief tells you something's wrong and you need error counters and rates to find out why. Confirmed present in the correct real reference book (Cisco IOS Interface and Hardware Component Command Reference, \"show hw-module slot tech-support through show interfaces vg-anylan\" chapter) via its table of contents, but the page's length meant the actual command body/parameter text was past what could be fetched this pass. Held pending a direct body-text confirmation."
       }
     },
     {
@@ -167,12 +168,12 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch# show interfaces status",
         "parameters": [],
         "sampleOutput": "Port      Name    Status       Vlan     Duplex  Speed  Type\nGi0/1             connected    10       a-full  a-1000 10/100/1000BaseTX\nGi0/2             notconnect   1        auto    auto   10/100/1000BaseTX",
-        "fieldNotes": "Fastest way to see every port's VLAN and link state on one screen without scrolling through per-interface detail."
+        "fieldNotes": "Fastest way to see every port's VLAN and link state on one screen without scrolling through per-interface detail. Same situation as show-interfaces: confirmed listed in the correct reference book's table of contents, body text not reached due to page length. Held pending direct confirmation."
       }
     },
     {
@@ -242,7 +243,7 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show controllers [interface-id]",
         "parameters": [
@@ -253,7 +254,7 @@
           }
         ],
         "sampleOutput": "GigabitEthernet0/1\nHardware is ...\nTransceiver present, cable diagnostic pass",
-        "fieldNotes": "Reach for this when show interfaces looks normal but you still suspect a physical/cabling/transceiver problem."
+        "fieldNotes": "Reach for this when show interfaces looks normal but you still suspect a physical/cabling/transceiver problem. Command confirmed to exist in the correct book family (Cisco IOS Interface and Hardware Component Command Reference) via WebSearch results referencing its dedicated chapter, but the exact chapter page and body text were not directly pulled this pass. Held pending direct confirmation."
       }
     },
     {
@@ -281,11 +282,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/lanswitch/command/lsw-cr-book/lsw-s2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch# show vlan brief",
         "parameters": [],
@@ -313,11 +315,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/lanswitch/command/lsw-cr-book/lsw-s2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch# show vlan id <vlan-id>",
         "parameters": [
