@@ -361,16 +361,17 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/csbss/CBS220/CLI-Guide/b_220CLI/address_table_commands.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch# show mac address-table",
         "parameters": [],
         "sampleOutput": "Vlan  Mac Address       Type     Ports\n10    0011.2233.4455    DYNAMIC  Gi0/1",
-        "fieldNotes": "Use to confirm which physical port a specific device is actually connected to, or to spot a MAC showing up on the wrong port."
+        "fieldNotes": "Use to confirm which physical port a specific device is actually connected to, or to spot a MAC showing up on the wrong port. Citation is vague: this source is a Cisco Business (small-business-switch) CLI guide, not classic-IOS-specific - the general command concept and behavior are real and well-established, but exact syntax wasn't independently pinned to a classic-IOS command reference this pass."
       }
     },
     {
@@ -429,16 +430,17 @@
         "title": "Cisco IOS Network Management Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/cdp/command/cdp-cr-book/cdp-cr-a1.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show cdp neighbors",
         "parameters": [],
         "sampleOutput": "Device ID    Local Intrfce   Capability  Platform  Port ID\nSwitch-A     Gig 0/1         S I         WS-C2960  Gig 0/24",
-        "fieldNotes": "Useful for confirming physical topology matches what a diagram claims, especially in unfamiliar racks."
+        "fieldNotes": "Useful for confirming physical topology matches what a diagram claims, especially in unfamiliar racks. Confirmed present in the real Cisco IOS CDP Command Reference (classic IOS)."
       }
     },
     {
@@ -463,16 +465,17 @@
         "title": "Cisco IOS Network Management Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/campus-lan-switches-access/Catalyst-1200-and-1300-Switches/cli/C1200-cli/lldp-commands.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show lldp neighbors",
         "parameters": [],
         "sampleOutput": "Device ID    Local Intf    Hold-time  Capability  Port ID\nSrv-A        Gi0/2         120        B           eth0",
-        "fieldNotes": "Use instead of CDP when the neighbor is non-Cisco equipment \u2014 servers, non-Cisco switches, some phones."
+        "fieldNotes": "Use instead of CDP when the neighbor is non-Cisco equipment \u2014 servers, non-Cisco switches, some phones. Citation is vague: this source is a Catalyst 1200/1300 (business-switch family) CLI guide rather than a classic-IOS command reference - the command and behavior are real and well-established, exact classic-IOS syntax not independently pinned this pass."
       }
     },
     {
@@ -543,16 +546,17 @@
         "title": "Cisco IOS IP Routing Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/iproute_pi/command/reference/iri_book/iri_pi2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show ip protocols",
         "parameters": [],
         "sampleOutput": "Routing Protocol is \"ospf 1\"\n  Router ID 1.1.1.1\n  Number of areas: 1 normal",
-        "fieldNotes": "Good first check when routes are missing but you're not sure if the protocol is even configured/running as expected."
+        "fieldNotes": "Good first check when routes are missing but you're not sure if the protocol is even configured/running as expected. Confirmed present in the real Cisco IOS IP Routing Protocol-Independent Command Reference, matching definition quoted in search results."
       }
     },
     {
@@ -575,16 +579,17 @@
         "title": "Cisco IOS IP Addressing Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/routers/asr9000/software/asr9k_r4-0/addr_serv/command/reference/ir40asrbook_chapter2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show arp",
         "parameters": [],
         "sampleOutput": "Protocol  Address       Age (min)  Hardware Addr     Type  Interface\nInternet  10.10.10.5    12         0011.2233.4455    ARPA  Gi0/1",
-        "fieldNotes": "Use to confirm a host is actually resolvable at Layer 2 before assuming a routing problem."
+        "fieldNotes": "Use to confirm a host is actually resolvable at Layer 2 before assuming a routing problem. Citation is vague and worth flagging specifically: this source is IOS-XR (ASR 9000), which has materially different \"show arp\" syntax (vrf/location parameters) than classic IOS's simpler form. The command and its purpose are real; the exact classic-IOS syntax wasn't independently confirmed from a classic-IOS-specific source this pass."
       }
     },
     {
@@ -610,16 +615,17 @@
         "title": "Cisco IOS IP Addressing: DHCP Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr/command/ipaddr-cr-book/ipaddr-r1.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show ip dhcp binding",
         "parameters": [],
         "sampleOutput": "IP address      Client-ID          Lease expiration       Type\n10.10.10.50     0100.1122.3344.55  Jul 27 2026 09:14 AM   Automatic",
-        "fieldNotes": "Only relevant if this device is itself the DHCP server \u2014 confirms whether it actually issued the lease a client claims to have."
+        "fieldNotes": "Only relevant if this device is itself the DHCP server \u2014 confirms whether it actually issued the lease a client claims to have. Confirmed present in the real Cisco IOS IP Addressing Services Command Reference."
       }
     },
     {
@@ -645,16 +651,17 @@
         "title": "Cisco IOS IP Addressing: NAT Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/ipaddr_nat/configuration/15-s/nat-15-s-book/iadnat-monmain.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show ip nat translations",
         "parameters": [],
         "sampleOutput": "Pro Inside global    Inside local     Outside local  Outside global\ntcp 203.0.113.5:1024 10.10.10.5:1024  198.51.100.9   198.51.100.9",
-        "fieldNotes": "Confirms whether traffic is actually being translated \u2014 an empty table when you expect entries usually means the NAT statement or ACL match isn't hitting."
+        "fieldNotes": "Confirms whether traffic is actually being translated \u2014 an empty table when you expect entries usually means the NAT statement or ACL match isn't hitting. Citation is a real Cisco IOS NAT Configuration Guide rather than a command-reference book specifically - same acceptable-source class as show-ip-route in batch 1."
       }
     },
     {
@@ -681,11 +688,12 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/access-list.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show access-lists [acl-name-or-number]",
         "parameters": [
@@ -696,7 +704,7 @@
           }
         ],
         "sampleOutput": "Standard IP access list 10\n    10 permit 10.10.10.0, wildcard bits 0.0.0.255 (2 matches)",
-        "fieldNotes": "The match counters are the key thing here \u2014 they tell you whether traffic is actually hitting the line you think it is."
+        "fieldNotes": "The match counters are the key thing here \u2014 they tell you whether traffic is actually hitting the line you think it is. Citation is vague: this archival page's exact scope (show access-lists vs. the access-list configuration command family) wasn't precisely confirmed this pass, but \"use the show access-lists EXEC command to display the contents of all access lists\" is a real, well-established description corroborated by search results."
       }
     },
     {
@@ -719,11 +727,12 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960x/software/15-2_2_e/security/command_reference/b_sec_1522e_2960-x_cr/b_sec_152ex_2960-x_cr_chapter_010.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch# show port-security [interface interface-id]",
         "parameters": [
@@ -734,7 +743,7 @@
           }
         ],
         "sampleOutput": "Port      MaxSecureAddr  CurrentAddr  SecurityViolation  Security Action\nGi0/1     1              1            0                   Shutdown",
-        "fieldNotes": "Check this first when a port has gone err-disabled \u2014 a nonzero violation count confirms port security as the cause."
+        "fieldNotes": "Check this first when a port has gone err-disabled \u2014 a nonzero violation count confirms port security as the cause. Citation is a Catalyst 2960-X-specific security command reference (classic IOS platform family)."
       }
     },
     {
@@ -759,16 +768,17 @@
         "title": "Cisco IOS Network Management Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/show_process_cpu.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show processes cpu",
         "parameters": [],
         "sampleOutput": "CPU utilization for five seconds: 12%/2%; one minute: 10%; five minutes: 9%\n PID  Runtime(ms)  Invoked  uSecs  5Sec  Process\n 142  4021         5521     728   3.1%  IP Input",
-        "fieldNotes": "Reach for this when a device feels sluggish or is dropping packets it shouldn't \u2014 high sustained CPU is a common root cause."
+        "fieldNotes": "Reach for this when a device feels sluggish or is dropping packets it shouldn't \u2014 high sustained CPU is a common root cause. Citation is the same archival E-Learning command-reference family already accepted for show-ip-route in batch 1."
       }
     },
     {
@@ -797,12 +807,12 @@
         "dateReviewed": "2026-07-26"
       },
       "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show memory statistics",
         "parameters": [],
         "sampleOutput": "Head    Total(b)     Used(b)      Free(b)      Lowest(b)   Largest(b)\nProcessor  512000000  210000000    302000000    295000000   180000000",
-        "fieldNotes": "A shrinking 'Lowest' value over time is the classic signature of a memory leak, not just normal usage."
+        "fieldNotes": "A shrinking 'Lowest' value over time is the classic signature of a memory leak, not just normal usage. Content accuracy flag, not a citation-precision issue: search results consistently describe the real IOS command as \"show memory\" (which itself displays memory statistics), not a distinct \"show memory statistics\" sub-command. This block's claimed syntax may be imprecise - held for that reason specifically."
       }
     },
     {
@@ -861,11 +871,12 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/hostname.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# hostname <name>",
         "parameters": [
@@ -876,7 +887,7 @@
           }
         ],
         "sampleOutput": "Router(config)# hostname EdgeRouter1\nEdgeRouter1(config)#",
-        "fieldNotes": "Usually one of the first commands run on a freshly imaged device \u2014 the prompt updates immediately, confirming it took."
+        "fieldNotes": "Usually one of the first commands run on a freshly imaged device \u2014 the prompt updates immediately, confirming it took. Confirmed: global configuration mode, default hostname \"Router\", no blank/space characters permitted - matches this real page family."
       }
     },
     {
