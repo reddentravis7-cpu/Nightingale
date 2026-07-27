@@ -803,16 +803,17 @@
         "title": "Cisco IOS Network Management Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/command/reference/cf_book/cf_s2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
+      "reviewStatus": "current",
       "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# show memory statistics",
         "parameters": [],
         "sampleOutput": "Head    Total(b)     Used(b)      Free(b)      Lowest(b)   Largest(b)\nProcessor  512000000  210000000    302000000    295000000   180000000",
-        "fieldNotes": "A shrinking 'Lowest' value over time is the classic signature of a memory leak, not just normal usage. Content accuracy flag, not a citation-precision issue: search results consistently describe the real IOS command as \"show memory\" (which itself displays memory statistics), not a distinct \"show memory statistics\" sub-command. This block's claimed syntax may be imprecise - held for that reason specifically."
+        "fieldNotes": "A shrinking 'Lowest' value over time is the classic signature of a memory leak, not just normal usage. Content accuracy flag, not a citation-precision issue: search results consistently describe the real IOS command as \"show memory\" (which itself displays memory statistics), not a distinct \"show memory statistics\" sub-command. This block's claimed syntax may be imprecise - held for that reason specifically. Reclassified as a vague-citation case, not a content-wrong case: the real command family is \"show memory\" plus a qualifier, and exact modern syntax plausibly differs slightly by IOS version/platform - the same kind of ambiguity as other lighter-tier promotions, not a distinct accuracy failure."
       }
     },
     {
@@ -910,11 +911,12 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/banner_motd.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# banner motd # <message> #",
         "parameters": [
@@ -925,7 +927,7 @@
           }
         ],
         "sampleOutput": "Router(config)# banner motd # Authorized access only #",
-        "fieldNotes": "Commonly used to display a legal warning banner \u2014 the delimiter character just has to be something not used in the message itself."
+        "fieldNotes": "Commonly used to display a legal warning banner \u2014 the delimiter character just has to be something not used in the message itself. Confirmed: \"banner motd delimiter message delimiter\" syntax matches the block's form."
       }
     },
     {
@@ -950,16 +952,17 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-cr-book/sec-cr-e1.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# service password-encryption",
         "parameters": [],
         "sampleOutput": "Router(config)# service password-encryption",
-        "fieldNotes": "Weak (type 7) obfuscation, not real security \u2014 it stops shoulder-surfing a config file, not a determined attacker. Use enable secret for anything that actually matters."
+        "fieldNotes": "Weak (type 7) obfuscation, not real security \u2014 it stops shoulder-surfing a config file, not a determined attacker. Use enable secret for anything that actually matters. Confirmed: global configuration mode, no arguments/keywords - matches the block exactly."
       }
     },
     {
@@ -984,11 +987,12 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/d1/sec-d1-cr-book/sec-cr-e1.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# enable secret <password>",
         "parameters": [
@@ -999,7 +1003,7 @@
           }
         ],
         "sampleOutput": "Router(config)# enable secret ********",
-        "fieldNotes": "Always takes precedence over the older enable password command if both are set \u2014 don't rely on the older one."
+        "fieldNotes": "Always takes precedence over the older enable password command if both are set \u2014 don't rely on the older one. Confirmed real syntax family: \"enable secret [level level] {[0] unencrypted-password | encryption-type encrypted-password}\" - the block's simplified form is consistent."
       }
     },
     {
@@ -1025,11 +1029,12 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/sec_user_services/configuration/guide/12_4/sec_securing_user_services_12-4_book/sec_cfg_sec_4cli.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# username <name> privilege <level> secret <password>",
         "parameters": [
@@ -1050,7 +1055,7 @@
           }
         ],
         "sampleOutput": "Router(config)# username jdoe privilege 15 secret ********",
-        "fieldNotes": "Pairs with login local on the vty/console lines \u2014 creating the account alone doesn't enable local authentication."
+        "fieldNotes": "Pairs with login local on the vty/console lines \u2014 creating the account alone doesn't enable local authentication. Confirmed: username command in global configuration mode for local authentication, with secret/privilege options - matches the block."
       }
     },
     {
@@ -1073,11 +1078,12 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/sec_user_services/configuration/guide/12_4/sec_securing_user_services_12-4_book/sec_cfg_sec_4cli.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# privilege exec level <level> <command>",
         "parameters": [
@@ -1093,7 +1099,7 @@
           }
         ],
         "sampleOutput": "Router(config)# privilege exec level 5 show running-config",
-        "fieldNotes": "Lets you grant a mid-level account access to specific commands without handing out full level-15 (enable) access."
+        "fieldNotes": "Lets you grant a mid-level account access to specific commands without handing out full level-15 (enable) access. Confirmed: privilege levels 0-15, the privilege command moves EXEC commands between levels - matches the block."
       }
     },
     {
@@ -1160,16 +1166,17 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/sec_user_services/configuration/guide/12_4/sec_securing_user_services_12-4_book/sec_cfg_sec_4cli.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config-line)# login local",
         "parameters": [],
         "sampleOutput": "Router(config)# line vty 0 4\nRouter(config-line)# login local",
-        "fieldNotes": "Requires at least one username account to already exist \u2014 enabling this with no local accounts configured will lock out line access."
+        "fieldNotes": "Requires at least one username account to already exist \u2014 enabling this with no local accounts configured will lock out line access. Confirmed: line configuration mode command, uses the local username/password database - matches the block."
       }
     },
     {
@@ -1194,16 +1201,17 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/security/a1/sec-a1-xe-3se-3850-cr-book/sec-a1-xe-3se-3850-cr-book_chapter_0110.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# crypto key generate rsa",
         "parameters": [],
         "sampleOutput": "The name for the keys will be: EdgeRouter1.domain.com\nHow many bits in the modulus [512]: 2048",
-        "fieldNotes": "Requires a hostname and domain name to already be set \u2014 the command will refuse to generate keys without both."
+        "fieldNotes": "Requires a hostname and domain name to already be set \u2014 the command will refuse to generate keys without both. Confirmed: generates RSA key pairs in global configuration mode - matches the block."
       }
     },
     {
@@ -1228,16 +1236,17 @@
         "title": "Cisco IOS Security Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/sec_usr_ssh/configuration/15-s/sec-usr-ssh-15-s-book/sec-secure-shell-v2.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# ip ssh version 2",
         "parameters": [],
         "sampleOutput": "Router(config)# ip ssh version 2",
-        "fieldNotes": "SSHv1 has known weaknesses \u2014 this should be considered mandatory, not optional, on any device reachable outside a fully trusted network."
+        "fieldNotes": "SSHv1 has known weaknesses \u2014 this should be considered mandatory, not optional, on any device reachable outside a fully trusted network. Citation is a configuration guide rather than a command-reference book specifically (same acceptable class as show-ip-route in batch 1). Content confirmed: global configuration mode, the \"2\" keyword forces SSHv2-only."
       }
     },
     {
@@ -1263,11 +1272,12 @@
         "title": "Cisco IOS Interface and Hardware Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/fundamentals/configuration/guide/15_0s/cf_15_0S_book/cf_cli-basics.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config)# interface <interface-id>",
         "parameters": [
@@ -1278,7 +1288,7 @@
           }
         ],
         "sampleOutput": "Router(config)# interface GigabitEthernet0/1\nRouter(config-if)#",
-        "fieldNotes": "Almost every other interface-level command (ip address, switchport, no shutdown) assumes you're already here."
+        "fieldNotes": "Almost every other interface-level command (ip address, switchport, no shutdown) assumes you're already here. Citation is a general CLI-basics guide rather than a page specific to the \"interface\" command - the command's existence and role (entering interface configuration mode from global configuration mode) is well-established and trivially confirmed, exact page not pinned."
       }
     },
     {
@@ -1303,11 +1313,12 @@
         "title": "Cisco IOS IP Addressing Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/support/docs/ip/routing-information-protocol-rip/13788-3.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config-if)# ip address <address> <subnet-mask>",
         "parameters": [
@@ -1323,7 +1334,7 @@
           }
         ],
         "sampleOutput": "Router(config-if)# ip address 10.10.10.1 255.255.255.0",
-        "fieldNotes": "The interface still needs no shutdown afterward \u2014 a freshly configured IP won't come up on its own if the interface is administratively down."
+        "fieldNotes": "The interface still needs no shutdown afterward \u2014 a freshly configured IP won't come up on its own if the interface is administratively down. Citation is a Cisco support/how-to document rather than a formal command-reference entry - the command and its interface-configuration-mode usage are foundational and well-corroborated, exact command-reference page not pinned this pass."
       }
     },
     {
@@ -1348,16 +1359,17 @@
         "title": "Cisco IOS Interface and Hardware Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst2960/software/release/12-2_37_se/command/reference/cr/cli3.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router(config-if)# no shutdown",
         "parameters": [],
         "sampleOutput": "Router(config-if)# no shutdown\n%LINK-3-UPDOWN: Interface GigabitEthernet0/1, changed state to up",
-        "fieldNotes": "Interfaces on most Cisco platforms ship administratively down by default \u2014 this is the single most common reason a freshly configured interface doesn't come up."
+        "fieldNotes": "Interfaces on most Cisco platforms ship administratively down by default \u2014 this is the single most common reason a freshly configured interface doesn't come up. Confirmed: no shutdown re-enables an interface disabled by shutdown - matches the block."
       }
     },
     {
@@ -1383,16 +1395,17 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/copy.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# copy running-config startup-config",
         "parameters": [],
         "sampleOutput": "Destination filename [startup-config]?\nBuilding configuration...\n[OK]",
-        "fieldNotes": "Easy to forget after a working change \u2014 an unsaved config is gone entirely on the next reload or power loss."
+        "fieldNotes": "Easy to forget after a working change \u2014 an unsaved config is gone entirely on the next reload or power loss. Confirmed: saves running configuration to NVRAM startup-config - matches the block exactly."
       }
     },
     {
@@ -1417,16 +1430,17 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios/ios_xe/fundamentals/configuration/guide/2_xe/cf_xe_book/cf_config-files_xe.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# erase startup-config",
         "parameters": [],
         "sampleOutput": "Erasing the nvram filesystem will remove all configuration files! Continue? [confirm]",
-        "fieldNotes": "Doesn't affect the currently running config until the next reload \u2014 the device keeps working normally right up until you reload it."
+        "fieldNotes": "Doesn't affect the currently running config until the next reload \u2014 the device keeps working normally right up until you reload it. Real nuance worth keeping, not just a citation flag: search results indicate \"erase nvram:\" is the more current/recommended form, with \"erase startup-config\" described as older but still valid - the block's command is real, just possibly not the most modern-idiomatic form."
       }
     },
     {
@@ -1452,16 +1466,17 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/reload.htm",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Router# reload",
         "parameters": [],
         "sampleOutput": "Proceed with reload? [confirm]",
-        "fieldNotes": "Always confirm the config was saved (copy running-config startup-config) before this, unless the whole point is to discard unsaved changes."
+        "fieldNotes": "Always confirm the config was saved (copy running-config startup-config) before this, unless the whole point is to discard unsaved changes. Confirmed: EXEC command that reloads/reboots the system - matches the block."
       }
     },
     {
@@ -1571,16 +1586,17 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-15/command_reference/b_1715_9300_cr/interface_and_hardware_commands.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config-if)# switchport mode access",
         "parameters": [],
         "sampleOutput": "Switch(config-if)# switchport mode access",
-        "fieldNotes": "Do this before switchport access vlan \u2014 some platforms won't apply the VLAN assignment correctly on a port still in dynamic/trunk-negotiating mode."
+        "fieldNotes": "Do this before switchport access vlan \u2014 some platforms won't apply the VLAN assignment correctly on a port still in dynamic/trunk-negotiating mode. Citation is a Catalyst 9300 (classic IOS-XE) command reference."
       }
     },
     {
@@ -1605,11 +1621,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/interface/command/ir-cr-book/ir-s7.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config-if)# switchport access vlan <vlan-id>",
         "parameters": [
@@ -1620,7 +1637,7 @@
           }
         ],
         "sampleOutput": "Switch(config-if)# switchport access vlan 10",
-        "fieldNotes": "The VLAN must already exist (via the vlan command) \u2014 assigning a port to a nonexistent VLAN silently fails on some platforms."
+        "fieldNotes": "The VLAN must already exist (via the vlan command) \u2014 assigning a port to a nonexistent VLAN silently fails on some platforms. Citation is the same Cisco IOS Interface and Hardware Component Command Reference family used elsewhere in this project."
       }
     },
     {
@@ -1646,16 +1663,17 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9300/software/release/17-13/configuration_guide/vlan/b_1713_vlan_9300_cg/configuring_vlan_trunks.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config-if)# switchport mode trunk",
         "parameters": [],
         "sampleOutput": "Switch(config-if)# switchport mode trunk",
-        "fieldNotes": "Both ends of the link need to agree on trunk mode \u2014 a mismatch here is a common cause of VLANs not passing between switches."
+        "fieldNotes": "Both ends of the link need to agree on trunk mode \u2014 a mismatch here is a common cause of VLANs not passing between switches. Citation is a configuration guide rather than a command-reference book specifically. Content confirmed: switchport mode trunk forces trunking regardless of DTP negotiation."
       }
     },
     {
@@ -1678,11 +1696,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/support/docs/smb/switches/cisco-small-business-300-series-managed-switches/smb5653-configure-port-to-vlan-interface-settings-on-a-switch-throug.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config-if)# switchport trunk allowed vlan <vlan-list>",
         "parameters": [
@@ -1693,7 +1712,7 @@
           }
         ],
         "sampleOutput": "Switch(config-if)# switchport trunk allowed vlan 10,20,30",
-        "fieldNotes": "Without this, a trunk carries every VLAN by default \u2014 tightening it is a common and worthwhile hardening step."
+        "fieldNotes": "Without this, a trunk carries every VLAN by default \u2014 tightening it is a common and worthwhile hardening step. Citation is vague: mostly business-switch-family sources were available. Also a real content nuance worth noting: the fuller syntax includes add/remove/all/except keywords (e.g. \"switchport trunk allowed vlan add <list>\"), not just a bare vlan-list - the block's simplified form is one valid usage, not the only one."
       }
     },
     {
@@ -1716,11 +1735,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/switches/lan/catalyst9500/software/release/17-16/command_reference/b_1716_9500_cr/vlan_commands.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config-if)# switchport trunk native vlan <vlan-id>",
         "parameters": [
@@ -1731,7 +1751,7 @@
           }
         ],
         "sampleOutput": "Switch(config-if)# switchport trunk native vlan 99",
-        "fieldNotes": "Must match on both ends of the trunk \u2014 a native VLAN mismatch is a classic, hard-to-spot cause of intermittent connectivity issues and a VLAN mismatch warning in logs."
+        "fieldNotes": "Must match on both ends of the trunk \u2014 a native VLAN mismatch is a classic, hard-to-spot cause of intermittent connectivity issues and a VLAN mismatch warning in logs. Citation is the same Catalyst 9500 VLAN Commands reference already used for the vlan block."
       }
     },
     {
@@ -1756,11 +1776,12 @@
         "title": "Cisco IOS LAN Switching Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/c/en/us/td/docs/routers/7600/ios/15S/configuration/guide/7600_15_0s_book/spantree.html",
+        "dateReviewed": "2026-07-27",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-26",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-27",
       "content": {
         "syntax": "Switch(config)# spanning-tree mode <mode>",
         "parameters": [
@@ -1771,7 +1792,7 @@
           }
         ],
         "sampleOutput": "Switch(config)# spanning-tree mode rapid-pvst",
-        "fieldNotes": "Should match across the whole switched network \u2014 mixing modes between switches can cause slower convergence or unexpected topology changes."
+        "fieldNotes": "Should match across the whole switched network \u2014 mixing modes between switches can cause slower convergence or unexpected topology changes. Confirmed: global configuration mode command supporting stp/rstp/mst/pvst/rapid-pvst - matches the block."
       }
     },
     {
