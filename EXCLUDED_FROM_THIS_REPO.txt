@@ -1,0 +1,8 @@
+TRANSLATE_5YR_BUSINESS_PLAN.md — deliberately excluded per ADR 0001.
+Business document, not architecture or knowledge content. Store it
+somewhere else, not in this engineering repo.
+
+CITATION_INDEX_TEMPLATE.md — superseded by the real
+CISCO_IOS_CITATION_INDEX.md that Code built directly on the repo.
+Not carried forward to avoid shipping a stale, empty stand-in next to
+domain content that already has a real, populated version elsewhere.

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "ge-oec.system-identity",
+    "title": "GE OEC One CFD — system identity",
+    "aliases": ["OEC One CFD", "GE OEC One CFD"],
+    "domain": "ge-oec-one-cfd",
+    "blockType": "specification",
+    "tags": ["ge-oec", "system-identity", "capability-1"],
+    "summary": "What the OEC One CFD is, its regulatory lineage, and its major physical assemblies — Phase 6 representation of capability 1, concepts 1.1, 1.2, 1.3 (existence only), 1.5, 1.6, per Steward's Approve with Constraints verdict.",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "relatedBlocks": [],
+    "sourceOfTruth": {
+      "title": "510(k) Premarket Notification K253269 — OEC One CFD",
+      "publisher": "U.S. FDA / GE HealthCare (GE Hualun Medical Systems Co., Ltd)",
+      "version": null,
+      "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf25/K253269.pdf",
+      "sourceClass": "R1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Device type", "value": "Mobile C-arm surgical imaging system (Image-Intensified Fluoroscopic X-Ray System, 21 CFR 892.1650, Class II)", "note": null},
+        {"label": "510(k) clearance", "value": "K253269, cleared 2025-11-26", "note": null},
+        {"label": "Predicate device", "value": "OEC One ASD (K240828)", "note": null},
+        {"label": "Reference device", "value": "OEC Elite (K172550)", "note": null},
+        {"label": "Major physical assemblies", "value": "Mobile stand with articulating arm; C-shaped apparatus with flat panel detector on one end and X-ray source assembly on the other; 27\" 4K touchscreen console", "note": "Direct from K253269's device description."},
+        {"label": "Detector configuration", "value": "21cm and 31cm CMOS flat panel detector options", "note": "Existence confirmed. Whether size is a purchase-time configuration or field-swappable is unresolved — Concept 1.3, still Research Pending."},
+        {"label": "Positioning envelope (axes only, not mechanism)", "value": "Lateral rotation, wig/wag, orbital rotation, vertical travel, horizontal travel — specific ranges documented in K253269's predicate comparison table", "note": "Deliberately excludes how these axes are actuated — that question belongs entirely to capability 3, still pending device-specific confirmation on manual-vs-power-assisted motion."},
+        {"label": "Transport power profile", "value": "5-minute standby power for transport between rooms without full restart", "note": "M1 source (GE HealthCare product page), not R1 — noted here per the known single-sourceOfTruth-per-block schema limitation rather than split into a second block."}
+      ],
+      "fieldNotes": "Two items intentionally excluded from this block per Steward's Phase 5 review, not omitted by oversight: PHI/cybersecurity language belongs under capability 8 (Connect and exchange data), which already scopes cybersecurity explicitly — forward-pointer only, no concept duplicated here. The existence of four software configurations previews capability 7's territory and is intentionally left for capability 7 to own once its own open catch-all-overlap question (from Phase 3 item c) resolves — referenced here only as a fact capability 7 must account for, not re-derived."
+    }
+  }
+]

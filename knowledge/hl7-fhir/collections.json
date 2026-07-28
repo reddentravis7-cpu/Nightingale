@@ -1,0 +1,85 @@
+[
+  {
+    "id": "hl7-v2",
+    "title": "HL7 v2",
+    "description": "Message-based patient administration, order, and result exchange — the message-passing paradigm.",
+    "icon": "ti-message-2",
+    "ordering": 1,
+    "domain": "hl7-v2",
+    "parentCollectionId": null,
+    "query": { "tags": ["hl7v2"] }
+  },
+  {
+    "id": "hl7v2.message-structure",
+    "title": "MESSAGE STRUCTURE",
+    "description": "Segments, encoding, and acknowledgment mechanics shared by every v2 message type.",
+    "ordering": 1,
+    "domain": "hl7-v2",
+    "parentCollectionId": "hl7-v2",
+    "query": { "tags": ["hl7v2", "message-structure"] }
+  },
+  {
+    "id": "hl7v2.adt",
+    "title": "ADT",
+    "description": "Admission, discharge, and transfer messages — patient and visit context.",
+    "ordering": 2,
+    "domain": "hl7-v2",
+    "parentCollectionId": "hl7-v2",
+    "query": { "tags": ["hl7v2", "adt"] }
+  },
+  {
+    "id": "hl7v2.orders",
+    "title": "ORDERS",
+    "description": "Order placement and identity — ORM/OMG territory.",
+    "ordering": 3,
+    "domain": "hl7-v2",
+    "parentCollectionId": "hl7-v2",
+    "query": { "tags": ["hl7v2", "orders"] }
+  },
+  {
+    "id": "hl7v2.results",
+    "title": "RESULTS",
+    "description": "Observation results returned against a prior order — ORU territory.",
+    "ordering": 4,
+    "domain": "hl7-v2",
+    "parentCollectionId": "hl7-v2",
+    "query": { "tags": ["hl7v2", "results"] }
+  },
+  {
+    "id": "hl7-fhir",
+    "title": "FHIR",
+    "description": "RESTful resource-based clinical data exchange — a different paradigm from v2's message-passing.",
+    "icon": "ti-api",
+    "ordering": 2,
+    "domain": "hl7-fhir",
+    "parentCollectionId": null,
+    "query": { "tags": ["fhir"] }
+  },
+  {
+    "id": "fhir.interactions",
+    "title": "INTERACTIONS",
+    "description": "CRUD verbs, URL patterns, and capability discovery.",
+    "ordering": 1,
+    "domain": "hl7-fhir",
+    "parentCollectionId": "hl7-fhir",
+    "query": { "tags": ["fhir", "interactions"] }
+  },
+  {
+    "id": "fhir.terminology",
+    "title": "TERMINOLOGY",
+    "description": "CodeSystem, ValueSet, ConceptMap, and binding strength.",
+    "ordering": 2,
+    "domain": "hl7-fhir",
+    "parentCollectionId": "hl7-fhir",
+    "query": { "tags": ["fhir", "terminology"] }
+  },
+  {
+    "id": "fhir.resources",
+    "title": "RESOURCES",
+    "description": "Patient, Encounter, Observation, ServiceRequest, and the reference graph between them.",
+    "ordering": 3,
+    "domain": "hl7-fhir",
+    "parentCollectionId": "hl7-fhir",
+    "query": { "tags": ["fhir", "resource"] }
+  }
+]

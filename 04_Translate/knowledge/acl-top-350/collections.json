@@ -1,0 +1,72 @@
+[
+  {
+    "id": "acl-top-350",
+    "title": "ACL TOP 350 CTS",
+    "description": "System operation, capacity, communication, and security capability for the ACL TOP 350 CTS coagulation analyzer — service-side and system-behavior content only, per the Translate Scope Constitution.",
+    "icon": "flask",
+    "color": "coral",
+    "ordering": 1,
+    "domain": "acl-top-350",
+    "parentCollectionId": null,
+    "query": {"tags": ["acl350"]},
+    "featuredBlocks": ["acl350.system-identity"],
+    "onboardingText": "Everything here describes what the analyzer does and how it's configured — not what a result means clinically. That boundary is deliberate, see TRANSLATE_SCOPE_CONSTITUTION.md.",
+    "learningGoals": ["Identify the device and its family position", "Know confirmed capacity and throughput figures", "Understand what the system tracks and secures, without clinical interpretation"]
+  },
+  {
+    "id": "acl350.device-identity",
+    "title": "Device identity",
+    "description": "What the ACL TOP 350 CTS is — manufacturer, family, regulatory classification.",
+    "icon": "id",
+    "color": "gray",
+    "ordering": 1,
+    "domain": "acl-top-350",
+    "parentCollectionId": "acl-top-350",
+    "query": {"tags": ["system-identity"]},
+    "featuredBlocks": ["acl350.system-identity", "acl350.regulatory-identity"],
+    "onboardingText": null,
+    "learningGoals": []
+  },
+  {
+    "id": "acl350.samples-and-reagents",
+    "title": "Samples and reagents",
+    "description": "Sample handling, pre-analytical checks, reagent and consumable capacity.",
+    "icon": "droplet",
+    "color": "teal",
+    "ordering": 2,
+    "domain": "acl-top-350",
+    "parentCollectionId": "acl-top-350",
+    "query": {"tags": ["samples"], "tagsAlt": ["reagents", "consumables"]},
+    "featuredBlocks": ["acl350.sample-handling", "acl350.reagent-and-consumable-management"],
+    "onboardingText": null,
+    "learningGoals": []
+  },
+  {
+    "id": "acl350.testing-and-measurement",
+    "title": "Testing and measurement",
+    "description": "Test execution capability and confirmed measurement throughput.",
+    "icon": "chart-bar",
+    "color": "purple",
+    "ordering": 3,
+    "domain": "acl-top-350",
+    "parentCollectionId": "acl-top-350",
+    "query": {"tags": ["test-execution"], "tagsAlt": ["measurement"]},
+    "featuredBlocks": ["acl350.test-execution-capacity", "acl350.measurement-throughput"],
+    "onboardingText": null,
+    "learningGoals": []
+  },
+  {
+    "id": "acl350.results-integration-security",
+    "title": "Results, integration, and security",
+    "description": "Results-governance software mechanics, host/LIS communication, and access-control capability. Includes the domain's clearest scope-boundary-adjacent content.",
+    "icon": "shield-lock",
+    "color": "pink",
+    "ordering": 4,
+    "domain": "acl-top-350",
+    "parentCollectionId": "acl-top-350",
+    "query": {"tags": ["results"], "tagsAlt": ["communication", "security"]},
+    "featuredBlocks": ["acl350.results-governance-software", "acl350.host-communication", "acl350.security-and-access-controls"],
+    "onboardingText": "Read acl350.results-governance-software's fieldNotes before extending this category — it names exactly where the scope boundary sits.",
+    "learningGoals": []
+  }
+]

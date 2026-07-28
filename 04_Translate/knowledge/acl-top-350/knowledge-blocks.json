@@ -1,0 +1,303 @@
+[
+  {
+    "id": "acl350.system-identity",
+    "title": "ACL TOP 350 CTS — system identity",
+    "aliases": ["ACL TOP 350", "ACL TOP 350 CTS"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "system-identity", "capability-1"],
+    "summary": "What the ACL TOP 350 CTS is, its family position, and its physical/software boundaries, per Werfen's own product materials.",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "relatedBlocks": ["acl350.regulatory-identity", "acl350.host-communication"],
+    "sourceOfTruth": {
+      "title": "ACL TOP Family 50 Series Coagulation Analyzer (product page) and ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/en/hemostasis-diagnostics/coagulation-analyzer-acl-top-family-50-series",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Manufacturer of record", "value": "Instrumentation Laboratory Company", "note": "Trades as Werfen."},
+        {"label": "Product family", "value": "ACL TOP Family 50 Series", "note": "Sibling models: ACL TOP 550 CTS, ACL TOP 750 / 750 CTS / 750 LAS."},
+        {"label": "Family positioning", "value": "\"The most compact for routine or specialty testing... perfect companion to ACL TOP 750 CTS or ACL TOP 550 CTS systems.\"", "note": "Werfen's own framing — 350 CTS is the smaller-footprint member of the family, meant to pair with larger units, not a standalone-only product."},
+        {"label": "Test menu", "value": "Clotting, chromogenic, and immunological assays", "note": null},
+        {"label": "Operator training claim", "value": "\"No specialized operator training required.\"", "note": "Direct quote from Werfen's product page. Not independently verified against an operator manual — flagged as a manufacturer marketing claim, not confirmed operational fact."},
+        {"label": "Unit dimensions (w x d x h)", "value": "81 x 84 x 73 cm (32 x 33 x 29 in)", "note": null},
+        {"label": "Weight (analyzer)", "value": "91 kg (200 lbs)", "note": null},
+        {"label": "Operating system / UI", "value": "Windows 7-based", "note": null},
+        {"label": "External peripherals", "value": "17-inch color LCD touchscreen, keyboard, mouse, printer — all external, dedicated PC", "note": null}
+      ],
+      "fieldNotes": "System-identity facts only — no clinical-use interpretation. Family positioning matters for future domain work: a 550/750-series block, if built later, should link here via relatedBlocks rather than duplicating this content."
+    }
+  },
+  {
+    "id": "acl350.regulatory-identity",
+    "title": "ACL TOP 350 CTS — regulatory identity",
+    "aliases": ["ACL350 GUDID", "ACL350 FDA classification"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "regulatory", "capability-1"],
+    "summary": "FDA/GUDID classification facts for the ACL TOP 350 CTS — device category and premarket submission record, not a clinical claim.",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "relatedBlocks": ["acl350.system-identity"],
+    "sourceOfTruth": {
+      "title": "AccessGUDID — DEVICE: ACL TOP 350 CTS (08426950784081)",
+      "publisher": "U.S. National Library of Medicine / FDA GUDID",
+      "version": null,
+      "url": "https://accessgudid.nlm.nih.gov/devices/08426950784081",
+      "sourceClass": "R1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "GMDN term", "value": "Coagulation analyser IVD, laboratory (code 56689)", "note": "GMDN status: Active."},
+        {"label": "FDA product code", "value": "GKP — \"INSTRUMENT, COAGULATION, AUTOMATED\"", "note": null},
+        {"label": "FDA premarket submissions on record", "value": "K150877, K242127", "note": "Two separate submission numbers on file — not yet resolved which covers which configuration or software version; flagged, not assumed."},
+        {"label": "Device record status", "value": "Initial record 2016-09-23, most recent update 2024-09-23", "note": null}
+      ],
+      "fieldNotes": "Regulatory classification only. Does not describe clinical performance, indications, or interpretation — those live in the cleared labeling itself, which hasn't been sourced here. R1-classed on purpose, distinct from the M1 (manufacturer marketing) source on acl350.system-identity — the two shouldn't be merged into one sourceOfTruth even though they describe the same device, which is exactly the multi-source situation the source-hierarchy schema gap (noted in KNOWLEDGE_BLOCK_MODEL.md) doesn't yet handle cleanly."
+    }
+  },
+  {
+    "id": "acl350.sample-handling",
+    "title": "ACL TOP 350 CTS — sample handling capability",
+    "aliases": ["ACL350 sample loading", "ACL350 HIL check"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "samples", "capability-3"],
+    "summary": "Confirmed sample-handling and pre-analytical check capabilities — what the analyzer does with a loaded tube before testing begins.",
+    "difficulty": "beginner",
+    "prerequisites": ["acl350.system-identity"],
+    "relatedBlocks": ["acl350.reagent-and-consumable-management"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Sample transport system", "value": "Racks", "note": null},
+        {"label": "Samples onboard", "value": "40 (10 per sample rack)", "note": null},
+        {"label": "Continuous sample loading", "value": "Yes", "note": null},
+        {"label": "HIL sample check", "value": "Yes, assay-specific", "note": "Detects Hemolysis, Icterus, Lipemia interference — an instrument-level interference check, not a clinical interpretation of the result itself."},
+        {"label": "Tube-fill height detection", "value": "Yes", "note": null},
+        {"label": "Sample aspiration clog check", "value": "Yes", "note": null},
+        {"label": "Closed-Tube Sampling", "value": "Yes (cap-piercing)", "note": null}
+      ],
+      "fieldNotes": "These are pre-analytical instrument checks — confirms the sample and mechanical path are suitable for testing. Does not describe what happens to a result once calculated; see acl350.results-governance-software for that boundary."
+    }
+  },
+  {
+    "id": "acl350.reagent-and-consumable-management",
+    "title": "ACL TOP 350 CTS — reagent and consumable capacity",
+    "aliases": ["ACL350 reagents", "ACL350 cuvettes"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "reagents", "consumables", "capability-4"],
+    "summary": "Onboard reagent and consumable capacity and tracking capability.",
+    "difficulty": "beginner",
+    "prerequisites": ["acl350.system-identity"],
+    "relatedBlocks": ["acl350.sample-handling", "acl350.test-execution-capacity"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Reagents onboard", "value": "26 (refrigerated)", "note": null},
+        {"label": "Continuous reagent loading", "value": "Yes", "note": null},
+        {"label": "Reagent barcode reader", "value": "Yes, integrated", "note": null},
+        {"label": "Barcoded reagents", "value": "Yes — barcode encodes lot, expiration date, and vial size", "note": null},
+        {"label": "Cuvettes onboard", "value": "800", "note": null},
+        {"label": "Applications onboard", "value": "500 (250 user-definable)", "note": null}
+      ],
+      "fieldNotes": "Capacity and identification facts only. Reagent stability-tracking and lot-management workflow mechanics (charter capability 4 items) aren't confirmed from the spec sheet — not claimed here, would need operator-manual sourcing."
+    }
+  },
+  {
+    "id": "acl350.test-execution-capacity",
+    "title": "ACL TOP 350 CTS — test execution capability",
+    "aliases": ["ACL350 STAT", "ACL350 rerun reflex"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "test-execution", "capability-5"],
+    "summary": "Confirmed test-execution features — predilution, STAT handling, rerun/reflex support.",
+    "difficulty": "intermediate",
+    "prerequisites": ["acl350.sample-handling", "acl350.reagent-and-consumable-management"],
+    "relatedBlocks": ["acl350.measurement-throughput"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Tests per sample", "value": "30", "note": null},
+        {"label": "Sample predilution", "value": "Yes", "note": null},
+        {"label": "Calibration curve predilution", "value": "Yes", "note": null},
+        {"label": "Factor parallelism", "value": "Yes", "note": null},
+        {"label": "STAT capability", "value": "Yes — at any time, in any position", "note": null},
+        {"label": "Rerun and reflex testing", "value": "Yes, configurable", "note": "Configurable means lab-defined rules, not a Translate-asserted clinical rule — rule content itself isn't sourced here."},
+        {"label": "Reaction-curve display", "value": "Yes", "note": null}
+      ],
+      "fieldNotes": "Describes what the instrument supports doing, not when a lab should choose to do it — that's a lab policy decision, out of scope per the Translate Scope Constitution."
+    }
+  },
+  {
+    "id": "acl350.measurement-throughput",
+    "title": "ACL TOP 350 CTS — measurement method categories and throughput",
+    "aliases": ["ACL350 throughput", "ACL350 PT APTT speed"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "measurement", "capability-6"],
+    "summary": "Confirmed analytical method categories and throughput figures. Internal measurement sequence, optical channels, and calculation algorithms are explicitly not claimed.",
+    "difficulty": "intermediate",
+    "prerequisites": ["acl350.test-execution-capacity"],
+    "relatedBlocks": [],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Method categories", "value": "Coagulometric (clotting), chromogenic, immunological", "note": null},
+        {"label": "PT throughput", "value": "Up to 110 tests/hr (110 samples/hr)", "note": null},
+        {"label": "APTT throughput", "value": "Up to 110 tests/hr (110 samples/hr)", "note": null},
+        {"label": "Combined PT/APTT throughput", "value": "Up to 110 tests/hr (55 samples/hr)", "note": null}
+      ],
+      "fieldNotes": "Per the Research Charter's explicit restraint on capability 6: internal measurement sequence, optical channel detail, timing logic, and calculation algorithms are not claimed here — not yet supported by any source reviewed. Throughput is a published spec figure, not a description of the internal method."
+    }
+  },
+  {
+    "id": "acl350.results-governance-software",
+    "title": "ACL TOP 350 CTS — results governance (software mechanics only)",
+    "aliases": ["ACL350 autovalidation", "ACL350 audit trail"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "results", "capability-8", "scope-boundary-adjacent"],
+    "summary": "What the software does with a result once calculated — storage, autovalidation, audit trail. Explicitly excludes reference ranges, abnormal-flag significance, and any clinical interpretation, per the Scope Constitution.",
+    "difficulty": "intermediate",
+    "prerequisites": ["acl350.system-identity"],
+    "relatedBlocks": ["acl350.security-and-access-controls"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Results autovalidation", "value": "Yes", "note": "Describes that an autovalidation feature exists and can act on results — the rules it applies are lab-configured, not sourced or asserted here."},
+        {"label": "Patient sample results database", "value": "20,000 samples (configurable)", "note": null},
+        {"label": "Audit-trail report", "value": "Yes", "note": null},
+        {"label": "Electronic signature", "value": "Yes", "note": null}
+      ],
+      "fieldNotes": "This is the capability most likely to carry the Scope Constitution's boundary inside it rather than around it (see TRANSLATE_SCOPE_CONSTITUTION.md, 'How this binds domain charters'). Deliberately excludes reference ranges, abnormal-flag significance, and result interpretation — those describe clinical meaning, not software behavior, and are out of scope regardless of whether Werfen's own materials discuss them elsewhere."
+    }
+  },
+  {
+    "id": "acl350.host-communication",
+    "title": "ACL TOP 350 CTS — host/LIS communication capability",
+    "aliases": ["ACL350 LIS interface", "ACL350 bidirectional"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "communication", "lis", "capability-9"],
+    "summary": "Confirmed host-communication capability. Protocol-level detail (message types, HL7 version in use) is not yet sourced — flagged as the connection point to the hl7-v2/FHIR domain, not assumed.",
+    "difficulty": "intermediate",
+    "prerequisites": ["acl350.system-identity"],
+    "relatedBlocks": ["hl7v2.msh-segment"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Host interface", "value": "Bidirectional, with host query", "note": null},
+        {"label": "Connected PC", "value": "External, dedicated", "note": null},
+        {"label": "Operating system", "value": "Windows 7-based", "note": null}
+      ],
+      "fieldNotes": "The spec sheet confirms bidirectional host communication exists but doesn't name a protocol or message standard. Linked to hl7v2.msh-segment as a plausible connection, not a confirmed one — whether this analyzer's host interface actually uses HL7 v2, and which version, needs its own sourced answer before that link is treated as more than a hypothesis."
+    }
+  },
+  {
+    "id": "acl350.security-and-access-controls",
+    "title": "ACL TOP 350 CTS — security and access-control features",
+    "aliases": ["ACL350 audit log", "ACL350 auto log-off"],
+    "domain": "acl-top-350",
+    "blockType": "specification",
+    "tags": ["acl350", "security", "access-control", "capability-12", "third-risk-axis"],
+    "summary": "Confirmed existence of security-relevant features per the manufacturer spec sheet. Does not confirm current hardening posture, patch level, or configuration of any deployed unit.",
+    "difficulty": "advanced",
+    "prerequisites": ["acl350.system-identity"],
+    "relatedBlocks": ["acl350.results-governance-software"],
+    "sourceOfTruth": {
+      "title": "ACL TOP 350 CTS Specifications Sheet",
+      "publisher": "Werfen",
+      "version": null,
+      "url": "https://www.werfen.com/na/sites/default/files/2017-10/ACL%20TOP%20350%20CTS%20Specifications%20Sheet.pdf",
+      "sourceClass": "M1",
+      "reviewedBy": null,
+      "dateReviewed": null
+    },
+    "reviewStatus": "needs-review",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "specifications": [
+        {"label": "Security system", "value": "Yes, configurable", "note": null},
+        {"label": "Auto log-off", "value": "Yes", "note": null},
+        {"label": "Events log system", "value": "Yes", "note": null},
+        {"label": "Audit-trail report", "value": "Yes", "note": null},
+        {"label": "Electronic signature", "value": "Yes", "note": null}
+      ],
+      "fieldNotes": "This block is the concrete first application of LAB_EQUIPMENT_DOMAIN_TEMPLATE.md's 'third risk axis' note: confirming a feature exists on a 2017-dated spec sheet is not the same claim as confirming current patch level, hardening configuration, or cybersecurity posture on any actual deployed unit. Werfen does maintain a dedicated cybersecurity/product-privacy channel (werfen.com/na/en/cybersecurity) — not yet sourced into this block, and should be before any claim stronger than 'this feature category exists' gets made here."
+    }
+  }
+]

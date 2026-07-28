@@ -1,0 +1,1019 @@
+[
+  {
+    "id": "hl7v2.msh-segment",
+    "title": "MSH \u2014 Message Header Segment",
+    "aliases": [
+      "MSH"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "control",
+      "segment",
+      "message-structure"
+    ],
+    "summary": "The mandatory first segment of every HL7 v2 message \u2014 declares delimiters, message type, and control identifiers.",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "relatedBlocks": [
+      "hl7v2.msa-segment",
+      "hl7v2.pid-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 2 \u2014 Control",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch02.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
+    "content": {
+      "elements": [
+        {
+          "name": "Field Separator",
+          "position": "MSH-1",
+          "dataType": "ST",
+          "cardinality": "1..1",
+          "description": "The character immediately following 'MSH' \u2014 defines the field separator for the entire message. Confirmed R (required) against the real HL7 Attribute Table."
+        },
+        {
+          "name": "Encoding Characters",
+          "position": "MSH-2",
+          "dataType": "ST",
+          "cardinality": "1..1",
+          "description": "Four characters in order: component, repetition, escape, subcomponent separators \u2014 conventionally ^~\\&."
+        },
+        {
+          "name": "Message Type",
+          "position": "MSH-9",
+          "dataType": "MSG",
+          "cardinality": "1..1",
+          "description": "Identifies the message type and trigger event, e.g. ADT^A01 \u2014 determines which segments follow."
+        },
+        {
+          "name": "Message Control ID",
+          "position": "MSH-10",
+          "dataType": "ST",
+          "cardinality": "1..1",
+          "description": "Unique identifier for this message instance, echoed back in MSA-2 of the acknowledgment."
+        },
+        {
+          "name": "Processing ID",
+          "position": "MSH-11",
+          "dataType": "PT",
+          "cardinality": "1..1",
+          "description": "Distinguishes production, training, and debugging traffic. Confirmed R (required) against the real HL7 Attribute Table."
+        },
+        {
+          "name": "Version ID",
+          "position": "MSH-12",
+          "dataType": "VID",
+          "cardinality": "1..1",
+          "description": "The HL7 version this message conforms to, e.g. 2.5.1. Corrected from an earlier 0..1 (optional) \u2014 the real HL7 Attribute Table confirms this is R (required), not optional."
+        }
+      ],
+      "exampleInstance": "MSH|^~\\&|LAB|HOSPITAL|EMR|HOSPITAL|20260727120000||ORU^R01|MSG00001|P|2.5.1",
+      "fieldNotes": "MSH-1 and MSH-2 are self-referential \u2014 MSH-1 is literally the character it defines, and MSH-2 is only readable once MSH-1 is known. Every downstream segment in the message depends on the delimiter set declared here, which is why MSH must always be first and why a malformed MSH breaks the entire message, not just one field. Full attribute table confirmed 2026-07-28 via DOM range extraction between heading anchors on the real v2.5.1 page (get_page_text truncates before reaching this table; direct DOM query does not)."
+    }
+  },
+  {
+    "id": "hl7v2.msa-segment",
+    "title": "MSA \u2014 Message Acknowledgment Segment",
+    "aliases": [
+      "MSA"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "control",
+      "segment",
+      "acknowledgment"
+    ],
+    "summary": "Carries the outcome of a received message \u2014 the core of every ACK, referenced by every message type, not owned by any one of them.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "hl7v2.msh-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.msh-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 2 \u2014 Control",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch02.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
+    "content": {
+      "elements": [
+        {
+          "name": "Acknowledgment Code",
+          "position": "MSA-1",
+          "dataType": "ID",
+          "cardinality": "1..1",
+          "description": "AA/AE/AR for original-mode or application-level acks; CA/CE/CR for enhanced-mode accept acks."
+        },
+        {
+          "name": "Message Control ID",
+          "position": "MSA-2",
+          "dataType": "ST",
+          "cardinality": "1..1",
+          "description": "Echoes the original message's MSH-10 \u2014 this is what links an ACK back to the message it's acknowledging."
+        }
+      ],
+      "exampleInstance": "MSA|AA|MSG00001",
+      "fieldNotes": "An ACK message is intentionally minimal \u2014 MSH + MSA, optionally SFT and repeating ERR. It carries an outcome about another message, not new clinical or administrative data of its own. Full attribute table confirmed 2026-07-28: MSA-1 and MSA-2 both R (required), matching what was already recorded."
+    }
+  },
+  {
+    "id": "hl7v2.evn-segment",
+    "title": "EVN \u2014 Event Type Segment",
+    "aliases": [
+      "EVN"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "adt",
+      "segment"
+    ],
+    "summary": "Carries the triggering event's type and timing for ADT messages \u2014 always paired with MSH-9 for the same information in a different form.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "hl7v2.msh-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.pid-segment",
+      "hl7v2.pv1-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 3 \u2014 Patient Administration",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
+    "content": {
+      "elements": [
+        {
+          "name": "Event Type Code",
+          "position": "EVN-1",
+          "dataType": "ID",
+          "cardinality": "0..1",
+          "description": "Retained for backward compatibility \u2014 the trigger event is authoritatively carried in MSH-9, not here, in current implementations. Confirmed OPT=B (backward-compatibility designation specifically, not a general 'optional') against the real HL7 Attribute Table."
+        },
+        {
+          "name": "Recorded Date/Time",
+          "position": "EVN-2",
+          "dataType": "TS",
+          "cardinality": "1..1",
+          "description": "When the event was actually recorded in the sending system, which may differ from when it occurred. Corrected from an earlier 0..1 (optional) \u2014 the real HL7 Attribute Table confirms this is R (required)."
+        }
+      ],
+      "exampleInstance": "EVN|A01|20260727120000",
+      "fieldNotes": "EVN-1 duplicating MSH-9's trigger event is a legacy artifact \u2014 don't build parsing logic that depends on EVN-1 being populated or matching MSH-9; treat MSH-9 as the source of truth for what kind of event this is. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
+    }
+  },
+  {
+    "id": "hl7v2.pid-segment",
+    "title": "PID \u2014 Patient Identification Segment",
+    "aliases": [
+      "PID"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "adt",
+      "segment",
+      "patient-identity"
+    ],
+    "summary": "Carries patient demographic identity \u2014 the segment every ADT, Order, and Result message references back to.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "hl7v2.msh-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.pv1-segment",
+      "hl7v2.evn-segment",
+      "fhir.patient-resource"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 3 \u2014 Patient Administration",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "Patient Identifier List",
+          "position": "PID-3",
+          "dataType": "CX",
+          "cardinality": "1..*",
+          "description": "One or more identifiers (e.g. MRN) for the patient \u2014 required, repeating."
+        },
+        {
+          "name": "Patient Name",
+          "position": "PID-5",
+          "dataType": "XPN",
+          "cardinality": "1..*",
+          "description": "Legal name and any aliases \u2014 required, repeating."
+        },
+        {
+          "name": "Date/Time of Birth",
+          "position": "PID-7",
+          "dataType": "TS",
+          "cardinality": "0..1",
+          "description": "Optional, non-repeating. Corrected from an initial DTM claim \u2014 confirmed TS against the version-pinned v2.5.1 text; DTM was a harmonized-reference artifact."
+        },
+        {
+          "name": "Administrative Sex",
+          "position": "PID-8",
+          "dataType": "IS",
+          "cardinality": "0..1",
+          "description": "Optional, non-repeating, coded per User-defined Table 0001. Corrected from an initial CWE claim \u2014 confirmed IS against the version-pinned v2.5.1 text."
+        }
+      ],
+      "exampleInstance": "PID|1||446-53||SURNAME^GIVEN||19800101|M",
+      "fieldNotes": "PID-3 and PID-5 are the two fields every downstream system actually depends on \u2014 everything else on this segment is context, not identity. Missing or malformed PID-3 is the single most common cause of a failed patient match downstream."
+    }
+  },
+  {
+    "id": "hl7v2.pv1-segment",
+    "title": "PV1 \u2014 Patient Visit Segment",
+    "aliases": [
+      "PV1"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "adt",
+      "segment",
+      "visit-context"
+    ],
+    "summary": "Carries visit-level data \u2014 where the patient is, who's treating them, what kind of encounter this is \u2014 distinct from PID's patient-identity data.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "hl7v2.pid-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.evn-segment",
+      "hl7v2.orc-segment",
+      "fhir.encounter-resource"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 3 \u2014 Patient Administration",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
+    "content": {
+      "elements": [
+        {
+          "name": "Patient Class",
+          "position": "PV1-2",
+          "dataType": "IS",
+          "cardinality": "1..1",
+          "description": "I/O/E for inpatient/outpatient/emergency \u2014 coded per user-defined table 0004."
+        },
+        {
+          "name": "Assigned Patient Location",
+          "position": "PV1-3",
+          "dataType": "PL",
+          "cardinality": "0..1",
+          "description": "Point-of-care/room/bed \u2014 where the patient currently is, not where they were admitted."
+        },
+        {
+          "name": "Attending Doctor",
+          "position": "PV1-7",
+          "dataType": "XCN",
+          "cardinality": "0..*",
+          "description": "The physician(s) of record for this visit. Corrected from an earlier 0..1 (single) \u2014 the real HL7 Attribute Table confirms RP/#=Y (repeating), consistent with a visit having more than one attending physician of record."
+        },
+        {
+          "name": "Visit Number",
+          "position": "PV1-19",
+          "dataType": "CX",
+          "cardinality": "0..1",
+          "description": "The identifier for this specific visit/encounter, distinct from PID-3's patient-level identifiers."
+        }
+      ],
+      "exampleInstance": "PV1|1|I|ICU^101^A||||1234^ATTEND^PHYSICIAN||||||||||||V00001",
+      "fieldNotes": "PV1-19 is the visit-level identifier \u2014 this is the field that maps most directly to FHIR's Encounter.id/identifier, while PID-3 maps to Patient's identity. Conflating the two is a common source of matching errors when two systems disagree about which ID scopes a record. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
+    }
+  },
+  {
+    "id": "hl7v2.nk1-segment",
+    "title": "NK1 \u2014 Next of Kin / Associated Parties Segment",
+    "aliases": [
+      "NK1"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "adt",
+      "segment"
+    ],
+    "summary": "Carries next-of-kin or other associated-party information \u2014 optional and repeating, attached to a patient but not required for a valid ADT message.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "hl7v2.pid-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.pid-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 3 \u2014 Patient Administration",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
+    "content": {
+      "elements": [
+        {
+          "name": "Set ID - NK1",
+          "position": "NK1-1",
+          "dataType": "SI",
+          "cardinality": "1..1",
+          "description": "Sequence number distinguishing repeated NK1 occurrences within one message."
+        },
+        {
+          "name": "Name",
+          "position": "NK1-2",
+          "dataType": "XPN",
+          "cardinality": "0..*",
+          "description": "The associated party's name. Corrected from an earlier 0..1 (single) \u2014 the real HL7 Attribute Table confirms RP/#=Y (repeating)."
+        },
+        {
+          "name": "Relationship",
+          "position": "NK1-3",
+          "dataType": "CE",
+          "cardinality": "0..1",
+          "description": "Coded relationship to the patient (spouse, parent, guardian, etc.) \u2014 confirmed CE, not the newer CWE, at v2.5.1."
+        }
+      ],
+      "exampleInstance": "NK1|1|DOE^JANE|SPO^Spouse",
+      "fieldNotes": "Zero, one, or many NK1 segments can appear per message \u2014 never assume exactly one is present, and never treat an absent NK1 as an error. NK1-3's data type is a documented trip-wire: a harmonized-reference search will report CWE; the actual v2.5.1 text says CE. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
+    }
+  },
+  {
+    "id": "hl7v2.orc-segment",
+    "title": "ORC \u2014 Common Order Segment",
+    "aliases": [
+      "ORC"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "orders",
+      "segment"
+    ],
+    "summary": "Carries order-control status and identity shared across all order types \u2014 paired with a type-specific detail segment like OBR.",
+    "difficulty": "intermediate",
+    "prerequisites": [
+      "hl7v2.pv1-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.obr-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 4 \u2014 Order Entry",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch04.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "Order Control",
+          "position": "ORC-1",
+          "dataType": "ID",
+          "cardinality": "1..1",
+          "description": "What's happening to this order \u2014 NW (new), CA (cancel), OK (accepted), etc. This is what actually drives order-workflow logic, not the message type alone."
+        },
+        {
+          "name": "Placer Order Number",
+          "position": "ORC-2",
+          "dataType": "EI",
+          "cardinality": "0..1",
+          "description": "Assigned by the ordering system. Either this or OBR-2 must be present; when both are present they should match."
+        },
+        {
+          "name": "Filler Order Number",
+          "position": "ORC-3",
+          "dataType": "EI",
+          "cardinality": "0..1",
+          "description": "Assigned by the fulfilling system. Either this or OBR-3 must be present."
+        },
+        {
+          "name": "Date/Time of Transaction",
+          "position": "ORC-9",
+          "dataType": "TS",
+          "cardinality": "0..1",
+          "description": "When this specific order-control event occurred."
+        }
+      ],
+      "exampleInstance": "ORC|NW|PON12345|FON67890||||||20260727110000",
+      "fieldNotes": "ORC-1 is the field that actually tells you what kind of order event this is \u2014 don't infer order state from the message type (ORM/OMG) alone, since one message can carry multiple order-control actions across repeating ORC groups."
+    }
+  },
+  {
+    "id": "hl7v2.obr-segment",
+    "title": "OBR \u2014 Observation Request Segment",
+    "aliases": [
+      "OBR"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "orders",
+      "results",
+      "segment"
+    ],
+    "summary": "Report-header segment shared by order messages and ORU results \u2014 restates order identity and the service being requested or reported on.",
+    "difficulty": "intermediate",
+    "prerequisites": [
+      "hl7v2.orc-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.orc-segment",
+      "hl7v2.obx-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 7 \u2014 Observation Reporting",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch07.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "Placer Order Number",
+          "position": "OBR-2",
+          "dataType": "EI",
+          "cardinality": "0..1",
+          "description": "Conditional \u2014 required if ORC-2 isn't present in the same order group."
+        },
+        {
+          "name": "Filler Order Number",
+          "position": "OBR-3",
+          "dataType": "EI",
+          "cardinality": "0..1",
+          "description": "Conditional \u2014 required if ORC-3 isn't present; ORC itself is optional in ORU, so this is often the only place the filler number appears."
+        },
+        {
+          "name": "Universal Service Identifier",
+          "position": "OBR-4",
+          "dataType": "CE",
+          "cardinality": "1..1",
+          "description": "The test or procedure being ordered/reported \u2014 confirmed CE, not CWE, at v2.5.1."
+        },
+        {
+          "name": "Observation Date/Time",
+          "position": "OBR-7",
+          "dataType": "TS",
+          "cardinality": "0..1",
+          "description": "Conditional \u2014 when the observation was actually made, distinct from when it was ordered."
+        },
+        {
+          "name": "Ordering Provider",
+          "position": "OBR-16",
+          "dataType": "XCN",
+          "cardinality": "0..1",
+          "description": "Who ordered this \u2014 often restated here even though it's implied by the originating order."
+        }
+      ],
+      "exampleInstance": "OBR|1|PON12345|FON67890|CBC^Complete Blood Count^L|||20260727083000|||||||||1234^ATTEND^PHYSICIAN",
+      "fieldNotes": "OBR is the segment most worth remembering as reused, not duplicated \u2014 the same segment definition appears inside an order message and as ORU's report header. OBR-4's data type is another CE/CWE trip-wire instance, same pattern as PID-8 and NK1-3."
+    }
+  },
+  {
+    "id": "hl7v2.obx-segment",
+    "title": "OBX \u2014 Observation/Result Segment",
+    "aliases": [
+      "OBX"
+    ],
+    "domain": "hl7-v2",
+    "blockType": "structural",
+    "tags": [
+      "hl7v2",
+      "results",
+      "segment"
+    ],
+    "summary": "Carries a single discrete measurement or finding \u2014 an OBR report header is followed by one OBX per observation.",
+    "difficulty": "intermediate",
+    "prerequisites": [
+      "hl7v2.obr-segment"
+    ],
+    "relatedBlocks": [
+      "hl7v2.obr-segment",
+      "fhir.observation-resource"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 Version 2.5.1 Standard, Chapter 7 \u2014 Observation Reporting",
+      "publisher": "HL7 International",
+      "version": "2.5.1",
+      "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch07.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "Value Type",
+          "position": "OBX-2",
+          "dataType": "ID",
+          "cardinality": "1..1",
+          "description": "Declares which HL7 data type OBX-5 is encoded as (NM, ST, CE, etc.) \u2014 required to correctly parse OBX-5 at all."
+        },
+        {
+          "name": "Observation Identifier",
+          "position": "OBX-3",
+          "dataType": "CE",
+          "cardinality": "1..1",
+          "description": "What was measured, typically coded against LOINC. Confirmed CE, not CWE, at v2.5.1 \u2014 this field was left flagged as contradictory in an earlier review pass and is now resolved against the version-pinned table."
+        },
+        {
+          "name": "Observation Value",
+          "position": "OBX-5",
+          "dataType": "varies",
+          "cardinality": "0..1",
+          "description": "The actual result \u2014 its data type is whatever OBX-2 declared, not fixed."
+        },
+        {
+          "name": "Observation Result Status",
+          "position": "OBX-11",
+          "dataType": "ID",
+          "cardinality": "0..1",
+          "description": "P/F/C/etc. \u2014 preliminary, final, corrected. Downstream systems should treat a corrected result as superseding a prior final one with the same OBX-3, not as a new, unrelated finding."
+        }
+      ],
+      "exampleInstance": "OBX|1|NM|789-8^Erythrocytes^LN||4.5|10*6/uL|4.2-5.4|N|||F",
+      "fieldNotes": "OBX-2 has to be read before OBX-5 can be parsed correctly \u2014 this is the field-level version of the same self-referential pattern MSH-1/MSH-2 have at the message level. A single OBR can be followed by many OBX segments, one per discrete measurement."
+    }
+  },
+  {
+    "id": "fhir.capabilitystatement-discovery",
+    "title": "GET [base]/metadata",
+    "aliases": [
+      "CapabilityStatement discovery",
+      "FHIR capabilities interaction"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "invokable",
+    "tags": [
+      "fhir",
+      "restful-interaction",
+      "discovery"
+    ],
+    "summary": "Retrieves a server's CapabilityStatement \u2014 what resources and interactions it actually supports, discovered at runtime rather than assumed from documentation.",
+    "difficulty": "beginner",
+    "prerequisites": [],
+    "relatedBlocks": [
+      "fhir.read-patient-instance",
+      "fhir.patient-resource"
+    ],
+    "sourceOfTruth": {
+      "title": "RESTful API \u2014 FHIR Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://hl7.org/fhir/R4/http.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "syntax": "GET [base]/metadata{?mode=[mode]}",
+      "parameters": [
+        {
+          "name": "mode",
+          "description": "Optional. full (default) | normative | terminology \u2014 controls how much of the CapabilityStatement is returned.",
+          "required": false
+        }
+      ],
+      "sampleOutput": "HTTP/1.1 200 OK\nContent-Type: application/fhir+json\n\n{ \"resourceType\": \"CapabilityStatement\", \"status\": \"active\", \"fhirVersion\": \"4.0.1\", \"rest\": [{\"mode\": \"server\", \"resource\": [{\"type\": \"Patient\", \"interaction\": [{\"code\": \"read\"}, {\"code\": \"search-type\"}]}]}] }",
+      "fieldNotes": "This is the block that resolves capability 7's discovery mechanism \u2014 before assuming a server supports a given resource or interaction, check its CapabilityStatement rather than the spec alone, since spec compliance and server implementation are two different things. Returns 404 if the endpoint doesn't speak FHIR at all, which is itself useful information."
+    }
+  },
+  {
+    "id": "fhir.patient-resource",
+    "title": "Patient",
+    "aliases": [
+      "FHIR Patient"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "structural",
+    "tags": [
+      "fhir",
+      "resource",
+      "patient-identity"
+    ],
+    "summary": "The person receiving care \u2014 a standalone, referenceable resource, not a segment embedded in a message.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "fhir.capabilitystatement-discovery"
+    ],
+    "relatedBlocks": [
+      "fhir.encounter-resource",
+      "fhir.observation-resource",
+      "hl7v2.pid-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 FHIR Patient Resource, Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://hl7.org/fhir/R4/patient.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "identifier",
+          "position": "Patient.identifier",
+          "dataType": "Identifier",
+          "cardinality": "0..*",
+          "description": "Business identifiers (MRN, SSN, etc.) \u2014 the FHIR analogue of PID-3, generalized to any identifier scheme."
+        },
+        {
+          "name": "name",
+          "position": "Patient.name",
+          "dataType": "HumanName",
+          "cardinality": "0..*",
+          "description": "Repeating \u2014 supports multiple names/aliases."
+        },
+        {
+          "name": "birthDate",
+          "position": "Patient.birthDate",
+          "dataType": "date",
+          "cardinality": "0..1"
+        },
+        {
+          "name": "gender",
+          "position": "Patient.gender",
+          "dataType": "code",
+          "cardinality": "0..1",
+          "description": "Bound to a required-strength ValueSet \u2014 administrative gender, not clinical sex."
+        }
+      ],
+      "exampleInstance": "{ \"resourceType\": \"Patient\", \"identifier\": [{\"value\": \"446-53\"}], \"name\": [{\"family\": \"Surname\", \"given\": [\"Given\"]}], \"birthDate\": \"1980-01-01\", \"gender\": \"male\" }",
+      "fieldNotes": "Same identity function as v2's PID, but as its own addressable resource other resources reference by URL rather than a segment that only exists inside one message. gender here is administrative, not a clinical/biological claim \u2014 a common point of confusion worth calling out explicitly."
+    }
+  },
+  {
+    "id": "fhir.read-patient-instance",
+    "title": "GET [base]/Patient/{id}",
+    "aliases": [
+      "read Patient",
+      "FHIR Patient read"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "invokable",
+    "tags": [
+      "fhir",
+      "restful-interaction",
+      "read"
+    ],
+    "summary": "Retrieves a single Patient resource instance by its logical id.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "fhir.capabilitystatement-discovery"
+    ],
+    "relatedBlocks": [
+      "fhir.patient-resource"
+    ],
+    "sourceOfTruth": {
+      "title": "RESTful API \u2014 FHIR Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://www.hl7.org/fhir/http.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "syntax": "GET [base]/Patient/{id}",
+      "parameters": [
+        {
+          "name": "id",
+          "description": "The resource's logical id, assigned by the server on create",
+          "required": true
+        }
+      ],
+      "sampleOutput": "HTTP/1.1 200 OK\nContent-Type: application/fhir+json\n\n{ \"resourceType\": \"Patient\", \"id\": \"123\", \"name\": [...] }",
+      "fieldNotes": "This is the same shape as a Cisco show command \u2014 a request and a real response \u2014 which is why this specific corner of FHIR stayed InvokableContent instead of needing the Structural shape the resources themselves required."
+    }
+  },
+  {
+    "id": "fhir.encounter-resource",
+    "title": "Encounter",
+    "aliases": [
+      "FHIR Encounter"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "structural",
+    "tags": [
+      "fhir",
+      "resource",
+      "visit-context"
+    ],
+    "summary": "Represents when and where care happened \u2014 the standalone, referenceable analogue of v2's PV1.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "fhir.capabilitystatement-discovery"
+    ],
+    "relatedBlocks": [
+      "fhir.patient-resource",
+      "fhir.observation-resource",
+      "fhir.servicerequest-resource",
+      "hl7v2.pv1-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 FHIR Encounter Resource, Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://hl7.org/fhir/R4/encounter.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "status",
+          "position": "Encounter.status",
+          "dataType": "code",
+          "cardinality": "1..1",
+          "description": "planned | arrived | triaged | in-progress | onleave | finished | cancelled + \u2014 required."
+        },
+        {
+          "name": "class",
+          "position": "Encounter.class",
+          "dataType": "Coding",
+          "cardinality": "1..1",
+          "description": "Classification of the encounter (inpatient/outpatient/emergency/etc.) \u2014 the closest analogue to v2's PV1-2 Patient Class, though not bound to the same table."
+        },
+        {
+          "name": "subject",
+          "position": "Encounter.subject",
+          "dataType": "Reference(Patient | Group)",
+          "cardinality": "0..1",
+          "description": "Who this encounter is for."
+        },
+        {
+          "name": "participant",
+          "position": "Encounter.participant",
+          "dataType": "BackboneElement",
+          "cardinality": "0..*",
+          "description": "People involved in the encounter (attending, consulting, etc.) \u2014 generalizes PV1-7's single Attending Doctor field into a repeating, typed list."
+        },
+        {
+          "name": "period",
+          "position": "Encounter.period",
+          "dataType": "Period",
+          "cardinality": "0..1",
+          "description": "Start and end time of the encounter."
+        },
+        {
+          "name": "reasonCode",
+          "position": "Encounter.reasonCode",
+          "dataType": "CodeableConcept",
+          "cardinality": "0..*",
+          "description": "Coded reason the encounter happened."
+        },
+        {
+          "name": "serviceProvider",
+          "position": "Encounter.serviceProvider",
+          "dataType": "Reference(Organization)",
+          "cardinality": "0..1",
+          "description": "The organization responsible for this encounter."
+        }
+      ],
+      "exampleInstance": "{ \"resourceType\": \"Encounter\", \"status\": \"in-progress\", \"class\": {\"code\": \"IMP\", \"display\": \"inpatient encounter\"}, \"subject\": {\"reference\": \"Patient/123\"}, \"period\": {\"start\": \"2026-07-27T08:30:00Z\"} }",
+      "fieldNotes": "class is a single Coding, not a CodeableConcept \u2014 it's meant to carry one system-defined classification, not a list of candidate codes. participant generalizing PV1-7 into a repeating, role-typed structure is the concrete example of the paradigm shift capability 7 describes: v2 gives you one named field per role it anticipated, FHIR gives you a repeating structure that doesn't need a new field for a new role."
+    }
+  },
+  {
+    "id": "fhir.observation-resource",
+    "title": "Observation",
+    "aliases": [
+      "FHIR Observation"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "structural",
+    "tags": [
+      "fhir",
+      "resource",
+      "results"
+    ],
+    "summary": "A measurement or point-in-time assessment \u2014 the structural analogue of v2's OBX, generalized well beyond lab results.",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "fhir.capabilitystatement-discovery"
+    ],
+    "relatedBlocks": [
+      "fhir.patient-resource",
+      "fhir.encounter-resource",
+      "hl7v2.obx-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 FHIR Observation Resource, Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://hl7.org/fhir/R4/observation.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "status",
+          "position": "Observation.status",
+          "dataType": "code",
+          "cardinality": "1..1",
+          "description": "registered | preliminary | final | amended + \u2014 the FHIR analogue of OBX-11's result status."
+        },
+        {
+          "name": "code",
+          "position": "Observation.code",
+          "dataType": "CodeableConcept",
+          "cardinality": "1..1",
+          "description": "What was observed \u2014 the analogue of OBX-3, typically bound to LOINC."
+        },
+        {
+          "name": "subject",
+          "position": "Observation.subject",
+          "dataType": "Reference(Patient | Group | Device | Location)",
+          "cardinality": "0..1",
+          "description": "Who or what the observation is about."
+        },
+        {
+          "name": "encounter",
+          "position": "Observation.encounter",
+          "dataType": "Reference(Encounter)",
+          "cardinality": "0..1",
+          "description": "The encounter this observation was made during."
+        },
+        {
+          "name": "effective[x]",
+          "position": "Observation.effective[x]",
+          "dataType": "dateTime | Period | Timing | instant",
+          "cardinality": "0..1",
+          "description": "When the observed value is asserted true \u2014 the analogue of OBR-7/OBX-14."
+        },
+        {
+          "name": "value[x]",
+          "position": "Observation.value[x]",
+          "dataType": "Quantity | CodeableConcept | string | boolean | integer | Range | Ratio | SampledData | time | dateTime | Period",
+          "cardinality": "0..1",
+          "description": "The result itself \u2014 its type varies by choice-of-type suffix, the direct analogue of OBX-2 declaring OBX-5's type."
+        },
+        {
+          "name": "interpretation",
+          "position": "Observation.interpretation",
+          "dataType": "CodeableConcept",
+          "cardinality": "0..*",
+          "description": "High/low/normal flag \u2014 roughly analogous to OBX-8 (Abnormal Flags)."
+        }
+      ],
+      "exampleInstance": "{ \"resourceType\": \"Observation\", \"status\": \"final\", \"code\": {\"coding\": [{\"system\": \"http://loinc.org\", \"code\": \"789-8\", \"display\": \"Erythrocytes\"}]}, \"subject\": {\"reference\": \"Patient/123\"}, \"valueQuantity\": {\"value\": 4.5, \"unit\": \"10*6/uL\"} }",
+      "fieldNotes": "value[x] and effective[x] are FHIR's 'choice of type' pattern \u2014 the actual field name in an instance is valueQuantity, valueString, etc., never literally 'value[x]'. This is the same self-referential-typing idea as OBX-2/OBX-5, just expressed as a naming convention instead of a separate declaring field."
+    }
+  },
+  {
+    "id": "fhir.servicerequest-resource",
+    "title": "ServiceRequest",
+    "aliases": [
+      "FHIR ServiceRequest"
+    ],
+    "domain": "hl7-fhir",
+    "blockType": "structural",
+    "tags": [
+      "fhir",
+      "resource",
+      "orders"
+    ],
+    "summary": "A request for a service to be performed \u2014 the analogue of v2's order (ORC/OBR territory).",
+    "difficulty": "beginner",
+    "prerequisites": [
+      "fhir.capabilitystatement-discovery"
+    ],
+    "relatedBlocks": [
+      "fhir.patient-resource",
+      "fhir.encounter-resource",
+      "fhir.observation-resource",
+      "hl7v2.orc-segment",
+      "hl7v2.obr-segment"
+    ],
+    "sourceOfTruth": {
+      "title": "HL7 FHIR ServiceRequest Resource, Release 4",
+      "publisher": "HL7 International",
+      "version": "R4",
+      "url": "https://hl7.org/fhir/R4/servicerequest.html",
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-27"
+    },
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-27",
+    "content": {
+      "elements": [
+        {
+          "name": "status",
+          "position": "ServiceRequest.status",
+          "dataType": "code",
+          "cardinality": "1..1",
+          "description": "draft | active | on-hold | revoked | completed | entered-in-error | unknown \u2014 the analogue of ORC-1's order-control state, though not a 1:1 value mapping."
+        },
+        {
+          "name": "intent",
+          "position": "ServiceRequest.intent",
+          "dataType": "code",
+          "cardinality": "1..1",
+          "description": "proposal | plan | order | original-order | reflex-order | etc. \u2014 distinguishes an actual order from a plan or proposal, a distinction v2's ORC-1 doesn't separate out as its own field."
+        },
+        {
+          "name": "code",
+          "position": "ServiceRequest.code",
+          "dataType": "CodeableConcept",
+          "cardinality": "0..1",
+          "description": "The service being requested \u2014 the analogue of OBR-4's Universal Service Identifier."
+        },
+        {
+          "name": "subject",
+          "position": "ServiceRequest.subject",
+          "dataType": "Reference(Patient | Group | Location | Device)",
+          "cardinality": "1..1",
+          "description": "Who or what the service is for \u2014 required, unlike Observation.subject."
+        },
+        {
+          "name": "encounter",
+          "position": "ServiceRequest.encounter",
+          "dataType": "Reference(Encounter)",
+          "cardinality": "0..1",
+          "description": "The encounter this request was made during."
+        },
+        {
+          "name": "requester",
+          "position": "ServiceRequest.requester",
+          "dataType": "Reference(Practitioner | PractitionerRole | Organization | Patient | RelatedPerson | Device)",
+          "cardinality": "0..1",
+          "description": "Who initiated the request \u2014 the analogue of OBR-16's Ordering Provider, but typed to allow non-practitioner requesters too."
+        },
+        {
+          "name": "occurrence[x]",
+          "position": "ServiceRequest.occurrence[x]",
+          "dataType": "dateTime | Period | Timing",
+          "cardinality": "0..1",
+          "description": "When the requested service should happen."
+        }
+      ],
+      "exampleInstance": "{ \"resourceType\": \"ServiceRequest\", \"status\": \"active\", \"intent\": \"order\", \"code\": {\"coding\": [{\"system\": \"http://loinc.org\", \"code\": \"58410-2\", \"display\": \"CBC panel\"}]}, \"subject\": {\"reference\": \"Patient/123\"} }",
+      "fieldNotes": "ServiceRequest.subject is required (1..1) where Observation.subject and Encounter.subject are both optional (0..1) \u2014 a service request without a subject genuinely doesn't make sense the way an Observation about aggregate/population data sometimes can. Worth knowing as the one cardinality difference across these three resources that isn't just modeling convenience."
+    }
+  }
+]
