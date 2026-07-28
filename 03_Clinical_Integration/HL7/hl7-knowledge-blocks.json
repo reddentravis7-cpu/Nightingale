@@ -25,11 +25,11 @@
       "publisher": "HL7 International",
       "version": "2.5.1",
       "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch02.html",
-      "reviewedBy": null,
-      "dateReviewed": null
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
     },
-    "reviewStatus": "needs-review",
-    "lastReviewed": "2026-07-27",
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
     "content": {
       "elements": [
         {
@@ -37,7 +37,7 @@
           "position": "MSH-1",
           "dataType": "ST",
           "cardinality": "1..1",
-          "description": "The character immediately following 'MSH' \u2014 defines the field separator for the entire message. Cardinality inferred (every message requires it to parse at all), not independently confirmed against an explicit R/O table cell."
+          "description": "The character immediately following 'MSH' \u2014 defines the field separator for the entire message. Confirmed R (required) against the real HL7 Attribute Table."
         },
         {
           "name": "Encoding Characters",
@@ -65,18 +65,18 @@
           "position": "MSH-11",
           "dataType": "PT",
           "cardinality": "1..1",
-          "description": "Distinguishes production, training, and debugging traffic. Cardinality inferred, not independently confirmed against an explicit R/O table cell."
+          "description": "Distinguishes production, training, and debugging traffic. Confirmed R (required) against the real HL7 Attribute Table."
         },
         {
           "name": "Version ID",
           "position": "MSH-12",
           "dataType": "VID",
-          "cardinality": "0..1",
-          "description": "The HL7 version this message conforms to, e.g. 2.5.1."
+          "cardinality": "1..1",
+          "description": "The HL7 version this message conforms to, e.g. 2.5.1. Corrected from an earlier 0..1 (optional) \u2014 the real HL7 Attribute Table confirms this is R (required), not optional."
         }
       ],
       "exampleInstance": "MSH|^~\\&|LAB|HOSPITAL|EMR|HOSPITAL|20260727120000||ORU^R01|MSG00001|P|2.5.1",
-      "fieldNotes": "MSH-1 and MSH-2 are self-referential \u2014 MSH-1 is literally the character it defines, and MSH-2 is only readable once MSH-1 is known. Every downstream segment in the message depends on the delimiter set declared here, which is why MSH must always be first and why a malformed MSH breaks the entire message, not just one field."
+      "fieldNotes": "MSH-1 and MSH-2 are self-referential \u2014 MSH-1 is literally the character it defines, and MSH-2 is only readable once MSH-1 is known. Every downstream segment in the message depends on the delimiter set declared here, which is why MSH must always be first and why a malformed MSH breaks the entire message, not just one field. Full attribute table confirmed 2026-07-28 via DOM range extraction between heading anchors on the real v2.5.1 page (get_page_text truncates before reaching this table; direct DOM query does not)."
     }
   },
   {
@@ -106,11 +106,11 @@
       "publisher": "HL7 International",
       "version": "2.5.1",
       "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch02.html",
-      "reviewedBy": null,
-      "dateReviewed": null
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
     },
-    "reviewStatus": "needs-review",
-    "lastReviewed": "2026-07-27",
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
     "content": {
       "elements": [
         {
@@ -129,7 +129,7 @@
         }
       ],
       "exampleInstance": "MSA|AA|MSG00001",
-      "fieldNotes": "An ACK message is intentionally minimal \u2014 MSH + MSA, optionally SFT and repeating ERR. It carries an outcome about another message, not new clinical or administrative data of its own."
+      "fieldNotes": "An ACK message is intentionally minimal \u2014 MSH + MSA, optionally SFT and repeating ERR. It carries an outcome about another message, not new clinical or administrative data of its own. Full attribute table confirmed 2026-07-28: MSA-1 and MSA-2 both R (required), matching what was already recorded."
     }
   },
   {
@@ -159,11 +159,11 @@
       "publisher": "HL7 International",
       "version": "2.5.1",
       "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
-      "reviewedBy": null,
-      "dateReviewed": null
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
     },
-    "reviewStatus": "needs-review",
-    "lastReviewed": "2026-07-27",
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
     "content": {
       "elements": [
         {
@@ -171,18 +171,18 @@
           "position": "EVN-1",
           "dataType": "ID",
           "cardinality": "0..1",
-          "description": "Retained for backward compatibility \u2014 the trigger event is authoritatively carried in MSH-9, not here, in current implementations."
+          "description": "Retained for backward compatibility \u2014 the trigger event is authoritatively carried in MSH-9, not here, in current implementations. Confirmed OPT=B (backward-compatibility designation specifically, not a general 'optional') against the real HL7 Attribute Table."
         },
         {
           "name": "Recorded Date/Time",
           "position": "EVN-2",
           "dataType": "TS",
-          "cardinality": "0..1",
-          "description": "When the event was actually recorded in the sending system, which may differ from when it occurred."
+          "cardinality": "1..1",
+          "description": "When the event was actually recorded in the sending system, which may differ from when it occurred. Corrected from an earlier 0..1 (optional) \u2014 the real HL7 Attribute Table confirms this is R (required)."
         }
       ],
       "exampleInstance": "EVN|A01|20260727120000",
-      "fieldNotes": "EVN-1 duplicating MSH-9's trigger event is a legacy artifact \u2014 don't build parsing logic that depends on EVN-1 being populated or matching MSH-9; treat MSH-9 as the source of truth for what kind of event this is. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check."
+      "fieldNotes": "EVN-1 duplicating MSH-9's trigger event is a legacy artifact \u2014 don't build parsing logic that depends on EVN-1 being populated or matching MSH-9; treat MSH-9 as the source of truth for what kind of event this is. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
     }
   },
   {
@@ -283,11 +283,11 @@
       "publisher": "HL7 International",
       "version": "2.5.1",
       "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
-      "reviewedBy": null,
-      "dateReviewed": null
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
     },
-    "reviewStatus": "needs-review",
-    "lastReviewed": "2026-07-27",
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
     "content": {
       "elements": [
         {
@@ -308,8 +308,8 @@
           "name": "Attending Doctor",
           "position": "PV1-7",
           "dataType": "XCN",
-          "cardinality": "0..1",
-          "description": "The physician of record for this visit."
+          "cardinality": "0..*",
+          "description": "The physician(s) of record for this visit. Corrected from an earlier 0..1 (single) \u2014 the real HL7 Attribute Table confirms RP/#=Y (repeating), consistent with a visit having more than one attending physician of record."
         },
         {
           "name": "Visit Number",
@@ -320,7 +320,7 @@
         }
       ],
       "exampleInstance": "PV1|1|I|ICU^101^A||||1234^ATTEND^PHYSICIAN||||||||||||V00001",
-      "fieldNotes": "PV1-19 is the visit-level identifier \u2014 this is the field that maps most directly to FHIR's Encounter.id/identifier, while PID-3 maps to Patient's identity. Conflating the two is a common source of matching errors when two systems disagree about which ID scopes a record. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check."
+      "fieldNotes": "PV1-19 is the visit-level identifier \u2014 this is the field that maps most directly to FHIR's Encounter.id/identifier, while PID-3 maps to Patient's identity. Conflating the two is a common source of matching errors when two systems disagree about which ID scopes a record. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
     }
   },
   {
@@ -349,11 +349,11 @@
       "publisher": "HL7 International",
       "version": "2.5.1",
       "url": "https://www.hl7.eu/HL7v2x/v251/std251/ch03.html",
-      "reviewedBy": null,
-      "dateReviewed": null
+      "reviewedBy": "Code (Domain Steward)",
+      "dateReviewed": "2026-07-28"
     },
-    "reviewStatus": "needs-review",
-    "lastReviewed": "2026-07-27",
+    "reviewStatus": "current",
+    "lastReviewed": "2026-07-28",
     "content": {
       "elements": [
         {
@@ -367,8 +367,8 @@
           "name": "Name",
           "position": "NK1-2",
           "dataType": "XPN",
-          "cardinality": "0..1",
-          "description": "The associated party's name."
+          "cardinality": "0..*",
+          "description": "The associated party's name. Corrected from an earlier 0..1 (single) \u2014 the real HL7 Attribute Table confirms RP/#=Y (repeating)."
         },
         {
           "name": "Relationship",
@@ -379,7 +379,7 @@
         }
       ],
       "exampleInstance": "NK1|1|DOE^JANE|SPO^Spouse",
-      "fieldNotes": "Zero, one, or many NK1 segments can appear per message \u2014 never assume exactly one is present, and never treat an absent NK1 as an error. NK1-3's data type is a documented trip-wire: a harmonized-reference search will report CWE; the actual v2.5.1 text says CE. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check."
+      "fieldNotes": "Zero, one, or many NK1 segments can appear per message \u2014 never assume exactly one is present, and never treat an absent NK1 as an error. NK1-3's data type is a documented trip-wire: a harmonized-reference search will report CWE; the actual v2.5.1 text says CE. Cardinality for this segment's fields is standards-consistent inference, not confirmed against an explicit required/optional table cell \u2014 attempted 2026-07-27, source page truncated before reaching that column. Held at needs-review pending that specific check. Full attribute table confirmed 2026-07-28."
     }
   },
   {
