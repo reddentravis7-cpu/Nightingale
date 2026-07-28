@@ -29,7 +29,7 @@
         "syntax": "Router# show users",
         "parameters": [],
         "sampleOutput": "    Line       User       Host(s)              Idle       Location\n*  0 con 0                idle                 00:00:00\n   1 vty 0     admin      idle                 00:04:12   10.10.10.5",
-        "fieldNotes": "Useful for confirming who else is on the box before making a change, or during an incident to see who else might be active. Command's existence in the Cisco IOS Configuration Fundamentals Command Reference is corroborated by a WebSearch snippet, but the snippet was thin (described \"show users all\" specifically, not clearly the base command's behavior) and I could not locate the exact chapter page to pull direct body text this pass. Held pending a direct page confirmation. Citation needed: command is real and well-established (EXEC-mode session listing), corroborated by a WebSearch snippet referencing the Cisco IOS Configuration Fundamentals Command Reference, but I could not pin down the exact chapter page after checking the likely candidates. Left un-cited rather than guessed - fine to fill in on a future pass."
+        "fieldNotes": "Useful for confirming who else is on the box before making a change, or during an incident to see who else might be active. Command's existence in the Cisco IOS Configuration Fundamentals Command Reference is corroborated by a WebSearch snippet, but the snippet was thin (described \"show users all\" specifically, not clearly the base command's behavior) and I could not locate the exact chapter page to pull direct body text this pass. Held pending a direct page confirmation. Citation needed: command is real and well-established (EXEC-mode session listing), corroborated by a WebSearch snippet referencing the Cisco IOS Configuration Fundamentals Command Reference, but I could not pin down the exact chapter page after checking the likely candidates. Left un-cited rather than guessed - fine to fill in on a future pass. Citation still needed as of 2026-07-28, now after five real attempts across two sessions: tried cf_s4.html and cf_s5.html (fetched directly, not found), and the \"show protocols through showmon\" ios-xml chapter (confirmed via full heading list that it jumps directly from \"show usbtoken\" to \"show version\" - \"show users\" is genuinely not documented in that particular chapter/edition). Also tried the single-command archival URL pattern (show_users.htm) that worked for show_clock.htm and others - returned a real 404, not present in that family either. The command and its purpose are real and well-established; the exact current official page has not been located despite a thorough, documented search."
       }
     },
     {
@@ -52,16 +52,23 @@
         "title": "Cisco IOS Fundamentals Command Reference",
         "publisher": "Cisco",
         "version": null,
-        "url": "[TBD]",
-        "dateReviewed": "2026-07-26"
+        "url": "https://www.cisco.com/E-Learning/bulk/public/tac/cim/cib/using_cisco_ios_software/cmdrefs/show_clock.htm",
+        "dateReviewed": "2026-07-28",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-27",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-28",
       "content": {
-        "syntax": "Router# show clock",
-        "parameters": [],
+        "syntax": "Router# show clock [detail]",
+        "parameters": [
+          {
+            "name": "detail",
+            "description": "(Optional) Indicates the clock source (NTP, VINES, system calendar, etc.) and current summer-time setting, if any.",
+            "required": false
+          }
+        ],
         "sampleOutput": "14:32:07.481 UTC Sun Jul 26 2026",
-        "fieldNotes": "Check this before trusting timestamps in logs \u2014 an unset clock makes show logging output misleading. A WebSearch snippet quotes real cisco.com content matching this block closely (\"show clock command in User Exec mode or Privileged Exec mode...no arguments or keywords\"), but I could not locate the exact command-reference chapter page to confirm directly via full body text this pass - the quote's source page wasn't pinned down precisely. Held pending that direct confirmation, not because the content looks wrong. Citation needed: command is real and well-established (no-argument EXEC command), corroborated by a WebSearch snippet quoting matching cisco.com content, but I could not pin down the exact chapter page after checking three candidate chapters. Left un-cited rather than guessed - fine to fill in on a future pass."
+        "fieldNotes": "Check this before trusting timestamps in logs \u2014 an unset clock makes show logging output misleading. A WebSearch snippet quotes real cisco.com content matching this block closely (\"show clock command in User Exec mode or Privileged Exec mode...no arguments or keywords\"), but I could not locate the exact command-reference chapter page to confirm directly via full body text this pass - the quote's source page wasn't pinned down precisely. Held pending that direct confirmation, not because the content looks wrong. Citation needed: command is real and well-established (no-argument EXEC command), corroborated by a WebSearch snippet quoting matching cisco.com content, but I could not pin down the exact chapter page after checking three candidate chapters. Left un-cited rather than guessed - fine to fill in on a future pass. Confirmed 2026-07-28 against the real page: full syntax is \"show clock [detail]\" - the optional detail keyword was not previously recorded."
       }
     },
     {
@@ -2206,22 +2213,22 @@
         "publisher": "Cisco",
         "version": null,
         "url": "https://www.cisco.com/c/en/us/td/docs/ios-xml/ios/iproute_ospf/command/iro-cr-book/ospf-i1.html",
-        "dateReviewed": null,
-        "reviewedBy": null
+        "dateReviewed": "2026-07-28",
+        "reviewedBy": "Code (Domain Steward)"
       },
-      "reviewStatus": "needs-review",
-      "lastReviewed": "2026-07-27",
+      "reviewStatus": "current",
+      "lastReviewed": "2026-07-28",
       "content": {
-        "syntax": "Router(config)# router ospf <process-id>",
+        "syntax": "Router(config)# router ospf <process-id> [vrf vrf-name]",
         "parameters": [
           {
             "name": "process-id",
-            "description": "Locally significant identifier, 1-65535 \u2014 doesn't need to match between routers",
+            "description": "Internally used identification parameter for an OSPF routing process, locally assigned. Corrected 2026-07-28: the real Cisco reference states it \"can be any positive integer\" - it does NOT state a 1-65535 upper bound as previously written from assumed/recalled knowledge. Doesn't need to match between routers.",
             "required": true
           }
         ],
         "sampleOutput": "Router(config)# router ospf 1\nRouter(config-router)#",
-        "fieldNotes": "The process-id is local only \u2014 it's a common misconception that it needs to match across the network. What has to match is the area number on the network statements that follow. Command existence and purpose confirmed against this real page (a related-commands entry: \"Configures an OSPF routing process\"; a nested example elsewhere on the page literally uses \"router ospf 1\"). The process-id 1-65535 range specifically was NOT re-confirmed from source text in this pass - the formal syntax table was past where the page fetch truncated. Held at needs-review pending a direct re-check of that specific range."
+        "fieldNotes": "The process-id is local only \u2014 it's a common misconception that it needs to match across the network. What has to match is the area number on the network statements that follow. Confirmed 2026-07-28 via direct DOM extraction of the real page's topic container (bypassing the earlier page-length truncation): full syntax is \"router ospf process-id [vrf vrf-name]\", and the process-id range claim was corrected - see the parameter description."
       }
     },
     {
