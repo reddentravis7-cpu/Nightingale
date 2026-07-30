@@ -218,3 +218,126 @@ What that means concretely, while building:
   implementation of the handoff, not a permanent property of the loop
   itself. Nothing about the phase structure should depend on him being the
   transport layer specifically.
+
+---
+
+## Capability States — the lifecycle a capability moves through
+
+The node structure above described a capability's *shape*. It said nothing
+about a capability's *state* — where in its life a given capability actually
+is. That gap became visible the moment the Director of Analytics role was
+defined: Analytics can only measure "% of capabilities at `operational`
+versus stuck at `structured`," or "time waiting on OEM authorization," if a
+capability carries an explicit, machine-readable lifecycle state. This
+section adds that axis.
+
+`capabilityState` is a single enum on a capability, five values in strict
+forward progression:
+
+| State | Meaning | Entry condition |
+|---|---|---|
+| `draft` | Named and placed in the map (Phase 1–2), nothing more — a placeholder with a title and a domain. | Capability identified in Research's first-pass map. |
+| `structured` | Has a full envelope (purpose, function, inputs, outputs, risks, dependencies) and a concept decomposition, but no Steward has validated it yet. Its underlying Blocks may still be `needs-review` or provisional — expected at this state, not a defect. | Envelope complete + concepts decomposed (Phase 4). |
+| `validated` | Steward has confirmed the dependency graph (Phase 3) and concept decomposition (Phase 5) are technically correct. Certifies correctness only — says nothing about authority to use OEM/licensed content. | Steward validation passed (Phases 3 & 5). |
+| `authorized` | The authority question is resolved: `oemReference.locked` is `false` — either a real licensed/OEM source is in hand, or the capability legitimately needs none. See Authority Boundary below. Independent of whether any Block has been promoted. | `oemReference.locked` flips to `false`. |
+| `operational` | Terminal. Validated **and** authorized **and** the Blocks carrying its locked/OEM-specific content have themselves reached `reviewStatus: "current"` under the existing gate (`reviewedBy` + `dateReviewed` + a real `url`). | All three conditions hold. |
+
+Two rules keep this honest:
+
+**`operational` is computed, never set by hand.** It is the conjunction of a
+capability-level fact (`authorized`) and a block-level fact (the relevant
+Blocks are `current`). Because it is downstream of both axes, letting a human
+stamp it directly would let a capability read `operational` while its
+evidence is still `needs-review` — exactly the placeholder-`current` failure
+the block model already caught once (the Cisco placeholder-url incident).
+Analytics consumes `operational` as a derived signal; nothing writes it as an
+assertion.
+
+**`capabilityState` and `reviewStatus` are different axes — they compose, they
+don't stack.** `capabilityState` is capability-level; `reviewStatus` (and the
+provisional/published pipeline) is block-level. A capability can legitimately
+be `structured` while its Blocks are `needs-review`. A capability reaches
+`authorized` on the authority axis alone, regardless of block promotion. Only
+`operational` requires both axes to line up. This mapping is written the same
+way here as it will be written into `KNOWLEDGE_BLOCK_MODEL.md` when
+`Capability` becomes a stored object — that schema addition is a separate,
+Steward-reviewed step (see Status below).
+
+**Where the current domains sit (informational, pending the schema object).**
+Assigning real states is a retrofit step that belongs with the `Capability`
+schema addition, not this document — but the mapping is already legible
+against live evidence: Cisco IOS and HL7/FHIR compute to `operational` (Blocks
+`current`, nothing OEM-locked); ACL TOP 350 is `structured` (Blocks all
+`needs-review`); GE OEC One CFD is `structured` and explicitly **not**
+`validated` (Phase 6 still unreconciled); ServPro / IICRC S500 is `structured`
+with `oemReference.locked: true` — the case the next section exists to
+describe.
+
+**Status.** Proposed by CTO as the lifecycle axis the Director of Analytics
+charter depends on. It is a process addition, pending the same Steward review
+any structural addition gets and pending Architect ratification — not yet
+settled. The `Capability` schema object that carries `capabilityState` and
+`oemReference` is a separate addition to `KNOWLEDGE_BLOCK_MODEL.md`, flagged
+there for Steward review before anything is built against it.
+
+---
+
+## Authority Boundary — locked until the source is actually in hand
+
+A capability can be technically correct and still not be something Translate
+is *entitled* to publish. Correctness is the Steward's axis (`validated`);
+authority is a separate axis with its own gate.
+
+`oemReference` is the field that carries it, on the `Capability` object:
+
+```
+oemReference   { locked: bool, source: sourceOfTruth?, note: string }
+```
+
+The rule: **a capability whose content depends on licensed or OEM-specific
+material stays `locked` (`oemReference.locked: true`) until an actual,
+legitimately obtained licensed/OEM source is in hand.** While locked:
+
+- it may be `structured`, and may even be `validated` for whatever
+  public-standard content it legitimately has;
+- it may **not** reach `authorized`, and therefore may not reach
+  `operational`;
+- no Block may present OEM-specific behavior as governed knowledge — a locked
+  capability publishes public-standard content only, or nothing.
+
+`locked` flips to `false` only when either (a) a real licensed/OEM source is
+obtained through a legitimate channel, or (b) the capability genuinely needs
+no licensed source at all — a pure public-standard capability is unlocked by
+definition (e.g. the Roche cobas 6000 public-standard interface build, which
+needs no proprietary manual).
+
+**Why this is a boundary and not a preference.** It is the authority-side
+analogue of the Scope Constitution's harm boundary: just as Translate does not
+produce content that sits upstream of a harm decision, it does not present
+OEM-specific behavior it has no authority to state. "We could reconstruct it
+from memory," or "a competitor's copy is available to us," does not clear the
+lock — the same way the harm boundary does not soften under commercial
+pressure. This is the base-level expression of what **CCO Obligation 4**
+(respect intellectual-property and licensing boundaries) requires: no
+capability advances on access or documents it is not entitled to use.
+
+**Worked cases, so Research and Steward have a concrete pattern:**
+
+- **IICRC S500 (ServPro):** `locked: true`. The domain may build its
+  facts-and-methods, public-standard content, but stays locked and cannot
+  reach `authorized` until the real, edition-confirmed S500 standard is
+  obtained. The lock is the whole reason the state model was built.
+- **Roche cobas 6000:** decomposition of OEM-specific capabilities is blocked
+  pending a legitimately obtained M1/M2/config-sheet. The competitor route —
+  obtaining Roche's proprietary docs via Werfen standing — is banned under the
+  conflict-of-interest line, CCO Obligation 4 in practice. Only the cap-1
+  public-standard build is unlocked.
+- **GE OEC One CFD:** the service manual (`SM-7888001-1EN-17`) and DICOM
+  conformance statement (`DOC2198430`) sit behind a GE account nobody on the
+  team holds — capabilities depending on them stay locked until access is
+  real, not assumed.
+
+**Status.** Same as Capability States above: CTO-proposed, pending Steward
+review and Architect ratification. The `oemReference` field lands on the
+`Capability` schema object in `KNOWLEDGE_BLOCK_MODEL.md`, flagged there for the
+same review.
