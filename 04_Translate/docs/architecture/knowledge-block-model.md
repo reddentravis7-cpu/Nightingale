@@ -373,10 +373,16 @@ locked or absent.
 ```
 
 **Status.** `Capability` object proposed by CTO; retrofit states assigned by
-Code against live evidence. Pending Steward review of the object itself — and
-this one gets the *new-top-level-object* scrutiny, per the honesty note above,
-not the lighter new-shape pass — and pending Architect ratification.
-Deliberately **not** yet built into the app: no `capabilities` table, no
+Code against live evidence. **Steward-reviewed 2026-07-30** (see
+`capability-object-steward-review.md`) — composite outcome: *Approve with
+Constraints* on the field set (C1–C3 attached), **Hold** on `operational`
+semantics (two precise unresolved requirements: it is typed as a stored value
+but defined as computed, and its OEM-specific evidence subset is
+unidentifiable), *Return for Editing* on the retrofit (the five entries are
+domain rollups mislabeled as capabilities). Self-review firewall flagged in the
+review: **not** final certification — pending an independent Steward or Architect
+ratification. Deliberately **not** yet built into the app: no `capabilities`
+table, no
 migration, no seed. That's the downstream step, gated on this review, exactly
 as the founding memo required ("don't build against it mid-domain without that
 pass").
