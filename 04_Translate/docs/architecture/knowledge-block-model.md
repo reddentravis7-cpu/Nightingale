@@ -248,6 +248,141 @@ listing free instead of duplicative — see the `show ip route` example below.
 
 ---
 
+## 2b. Capability — a first-class object, with a lifecycle
+
+Until now `Capability` was a planning-level node in the Research→Steward loop
+(see `CAPABILITY_MAP_PROCESS.md`), not a stored object — `KnowledgeBlock` and
+`Collection` were the only real types here. The Director of Analytics role
+changes that: Analytics can't measure "time waiting on OEM authorization" or
+"% of capabilities at `operational`" unless a capability is a thing that
+exists, carries a state, and can be counted. So `Capability` becomes a stored
+object.
+
+**Honesty note — this is bigger than the last three additions, and shouldn't
+borrow their reassurance.** `StructuralContent`, `SpecificationContent`, and
+Kid Translate's `Entity` were all *content shapes* — new payloads hanging off
+the unchanged `KnowledgeBlock` envelope, which is why "a new shape slotted in
+without the envelope moving" held each time. `Capability` is **not** a content
+shape; it is a **third top-level object**, a sibling of `KnowledgeBlock` and
+`Collection`. The iteration-not-evolution evidence recorded above does not
+cover this case — this is the first genuinely new top-level object since the
+envelope/content split, and it earns the heavier scrutiny that implies, not
+the "touched nothing foundational" framing. Flagged to Steward on exactly
+those terms.
+
+```
+Capability
+  id                string      unique, stable
+  title             string
+  domain            string
+  purpose           string
+  function          string
+  relationships     [capabilityId]
+  inputs            [string]
+  outputs           [string]
+  risks             [string]
+  safety            string?
+  requiredSkills    [string]
+  dependencies      [capabilityId]
+  evidence          [blockId]   Knowledge Blocks that back this capability
+  oemReference      object      { locked: bool, source: sourceOfTruth?, note: string }
+                                 locked stays true until a real licensed/OEM
+                                 source is in hand — see the Authority Boundary
+                                 section of CAPABILITY_MAP_PROCESS.md
+  capabilityState   enum        "draft" | "structured" | "validated" |
+                                 "authorized" | "operational"
+```
+
+**State composition — the mapping, stated explicitly** (per the Analytics
+requirement that `operational` be *computed*, not eyeballed). `capabilityState`
+is a capability-level axis. `reviewStatus` (on `KnowledgeBlock`) and the
+provisional/published pipeline are separate, block-level axes. They compose;
+they do not stack:
+
+- A capability may be `structured` while its Blocks are still `needs-review`
+  or provisional — expected, not a defect.
+- A capability reaches `authorized` when `oemReference.locked` flips to
+  `false` (a real source is in hand, or none is needed), independent of
+  whether any Block has been promoted.
+- A capability reaches `operational` only once it is `authorized` **and** the
+  Blocks carrying its locked/OEM-specific content have themselves reached
+  `reviewStatus: "current"` under the existing gate (`reviewedBy` +
+  `dateReviewed` + a real `url`). `operational` is downstream of both axes —
+  it is **computed, never hand-set**. (Same rule stated from the process side
+  in `CAPABILITY_MAP_PROCESS.md` § Capability States; restated here because
+  the schema is where a consumer reads it.)
+
+**Open question, named now rather than found mid-production:** `capabilityState`
+is written per-capability, but the retrofit below assigns it per-*domain* — a
+whole domain rolled up to one state. That's a defensible v1 simplification (a
+domain is only as `operational` as its weakest OEM-locked capability), but it's
+a real granularity decision for Steward: per-capability with a computed domain
+rollup, or per-domain until capabilities are enumerated individually? Left
+per-domain for the retrofit; flagged, not silently resolved.
+
+### Retrofit — the five existing domains, states assigned against live evidence
+
+Not guessed. Each state was checked against the live repo, not the founding
+memo's assertion — `reviewStatus` counts read from the tracked JSON, domain
+posture read from `PROJECT_STATUS.md`. `oemReference.source` omitted where
+locked or absent.
+
+```json
+[
+  {
+    "id": "cap.cisco-ios",
+    "title": "Cisco IOS operational command reference",
+    "domain": "cisco-ios",
+    "capabilityState": "operational",
+    "oemReference": { "locked": false, "note": "Public command references; no OEM-licensed source gates this domain." },
+    "evidenceNote": "76/77 Blocks reviewStatus:current with real http url + reviewedBy (verified in cisco-ios-knowledge-blocks.json). The one non-current, show-users, is a documented negative — absent from the sourced chapter — not a pending review."
+  },
+  {
+    "id": "cap.hl7-fhir",
+    "title": "HL7 v2 / FHIR interface structures",
+    "domain": "hl7-fhir",
+    "capabilityState": "operational",
+    "oemReference": { "locked": false, "note": "Public standards (HL7 v2.5.1, FHIR R4); no OEM lock." },
+    "evidenceNote": "15/15 Blocks reviewStatus:current with real url + reviewedBy (verified in hl7-knowledge-blocks.json)."
+  },
+  {
+    "id": "cap.acl-top-350",
+    "title": "ACL TOP 350 CTS serviceable system",
+    "domain": "acl-top-350",
+    "capabilityState": "structured",
+    "oemReference": { "locked": false, "note": "Manufacturer spec-sheet data; IP posture pending legal review (PROJECT_STATUS), which is a copyright question, not an OEM-document access lock." },
+    "evidenceNote": "9/9 Blocks needs-review (verified). Blocked at validated — nothing Steward-promoted yet."
+  },
+  {
+    "id": "cap.ge-oec-one-cfd",
+    "title": "GE OEC One CFD serviceable system",
+    "domain": "ge-oec-one-cfd",
+    "capabilityState": "structured",
+    "oemReference": { "locked": true, "note": "Service manual SM-7888001-1EN-17 and DICOM conformance DOC2198430 sit behind a GE account nobody on the team holds." },
+    "evidenceNote": "12/12 capabilities cleared Phase 4, but explicitly NOT validated: repo carries only 1 draft-only Block (needs-review), three uncoordinated Phase 6 attempts still unreconciled (PROJECT_STATUS, README_NOT_CANONICAL). Held at structured deliberately — do not advance past where PROJECT_STATUS says this domain actually is."
+  },
+  {
+    "id": "cap.iicrc-s500",
+    "title": "IICRC S500 water-restoration serviceable methods",
+    "domain": "iicrc-s500",
+    "capabilityState": "structured",
+    "oemReference": { "locked": true, "note": "Real, edition-confirmed IICRC S500 standard not yet obtained — the canonical locked case the state model was built to describe." },
+    "evidenceNote": "Facts-and-methods build authorized under IP constraint; postdates the 2026-07-28 PROJECT_STATUS snapshot, so grounded in the S500 crew charters. Stays locked until the edition-confirmed standard is in hand."
+  }
+]
+```
+
+**Status.** `Capability` object proposed by CTO; retrofit states assigned by
+Code against live evidence. Pending Steward review of the object itself — and
+this one gets the *new-top-level-object* scrutiny, per the honesty note above,
+not the lighter new-shape pass — and pending Architect ratification.
+Deliberately **not** yet built into the app: no `capabilities` table, no
+migration, no seed. That's the downstream step, gated on this review, exactly
+as the founding memo required ("don't build against it mid-domain without that
+pass").
+
+---
+
 ## 3. Worked Examples — Cisco IOS
 
 ### Collections
