@@ -251,7 +251,11 @@ stamp it directly would let a capability read `operational` while its
 evidence is still `needs-review` — exactly the placeholder-`current` failure
 the block model already caught once (the Cisco placeholder-url incident).
 Analytics consumes `operational` as a derived signal; nothing writes it as an
-assertion.
+assertion. (Concretely, per the Steward revision of `KNOWLEDGE_BLOCK_MODEL.md`
+§2b: `operational` is **not** one of the stored `capabilityState` enum values —
+`capabilityState` stores only `draft|structured|validated|authorized`, and
+`operational` is a computed boolean, `authorized` AND every evidence block
+`current`.)
 
 **`capabilityState` and `reviewStatus` are different axes — they compose, they
 don't stack.** `capabilityState` is capability-level; `reviewStatus` (and the

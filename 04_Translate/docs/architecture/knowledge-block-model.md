@@ -284,14 +284,52 @@ Capability
   safety            string?
   requiredSkills    [string]
   dependencies      [capabilityId]
-  evidence          [blockId]   Knowledge Blocks that back this capability
+  evidence          [{ blockId, oemSpecific: bool }]
+                                 Knowledge Blocks that back this capability.
+                                 oemSpecific flags the subset whose content
+                                 depends on the licensed/OEM source — the input
+                                 the authority gate (C3) needs to identify the
+                                 OEM population. Authored at link time for now;
+                                 once the M1–U1 source-hierarchy backport lands
+                                 it can be derived from each block's source class
+                                 rather than hand-set.
   oemReference      object      { locked: bool, source: sourceOfTruth?, note: string }
                                  locked stays true until a real licensed/OEM
                                  source is in hand — see the Authority Boundary
                                  section of CAPABILITY_MAP_PROCESS.md
-  capabilityState   enum        "draft" | "structured" | "validated" |
-                                 "authorized" | "operational"
+  capabilityState   enum        STORED, human/process-set — the four states a
+                                 person or the loop actually advances:
+                                 "draft" | "structured" | "validated" | "authorized"
+                                 (no "operational" here — see `operational` below)
+  operational       bool        COMPUTED, never stored or hand-set. Derived
+                                 projection:  capabilityState == "authorized"
+                                 AND every evidence[].blockId has
+                                 reviewStatus == "current"  (blocks marked
+                                 "deprecated" are excluded from the set; a
+                                 documented-negative block belongs there, not in
+                                 "needs-review"). A consumer such as Analytics
+                                 evaluates this; nothing writes it.
 ```
+
+**F1 resolved:** `operational` is no longer a value of the stored `capabilityState`
+enum — it is a separate *computed* boolean. There is now no field a human can set
+to `operational`, which is what "computed, never hand-set" actually requires; the
+prose rule and the type finally agree.
+
+**F2 resolved:** `evidence` entries carry `oemSpecific`, so the OEM population is
+identifiable — the authority gate C3 (below) can check it. Note the deliberate
+simplification the fix also makes: `operational` now requires **all** evidence
+`current`, not just the OEM-specific subset. That is stricter than the founding
+memo's "OEM-specific blocks current," it subsumes it, and it removes the
+ambiguity F2 flagged — a capability isn't "operational" with a stale public block
+either. `oemSpecific` is retained for authority checking (C3), not for the
+`operational` calc.
+
+**C3 (authority consistency), now checkable:** while `oemReference.locked == true`,
+no `evidence` entry with `oemSpecific: true` may have its block promoted to
+`reviewStatus: "current"` — you cannot publish OEM-specific content you are not
+yet authorized to state. The `oemSpecific` flag is exactly what makes this
+enforceable rather than aspirational.
 
 **State composition — the mapping, stated explicitly** (per the Analytics
 requirement that `operational` be *computed*, not eyeballed). `capabilityState`
@@ -304,88 +342,93 @@ they do not stack:
 - A capability reaches `authorized` when `oemReference.locked` flips to
   `false` (a real source is in hand, or none is needed), independent of
   whether any Block has been promoted.
-- A capability reaches `operational` only once it is `authorized` **and** the
-  Blocks carrying its locked/OEM-specific content have themselves reached
+- `operational` is not a stored state at all — it is a **computed** boolean:
+  `capabilityState == "authorized"` **and** every `evidence[].blockId` is
   `reviewStatus: "current"` under the existing gate (`reviewedBy` +
-  `dateReviewed` + a real `url`). `operational` is downstream of both axes —
-  it is **computed, never hand-set**. (Same rule stated from the process side
-  in `CAPABILITY_MAP_PROCESS.md` § Capability States; restated here because
-  the schema is where a consumer reads it.)
+  `dateReviewed` + a real `url`), with `deprecated` blocks excluded. Because it
+  is derived from both axes, nothing writes it; a consumer (Analytics)
+  evaluates it. (Same rule stated from the process side in
+  `CAPABILITY_MAP_PROCESS.md` § Capability States; restated here because the
+  schema is where a consumer reads it.)
 
-**Open question, named now rather than found mid-production:** `capabilityState`
-is written per-capability, but the retrofit below assigns it per-*domain* — a
-whole domain rolled up to one state. That's a defensible v1 simplification (a
-domain is only as `operational` as its weakest OEM-locked capability), but it's
-a real granularity decision for Steward: per-capability with a computed domain
-rollup, or per-domain until capabilities are enumerated individually? Left
-per-domain for the retrofit; flagged, not silently resolved.
+**Granularity — resolved as an explicit rollup (Steward review F3).**
+`capabilityState` is a per-capability field, but a domain contains *many*
+capabilities (GE OEC has 12). The retrofit below therefore does **not** pretend
+to be a set of `Capability` instances. It is an explicitly-labeled set of
+**provisional domain-level rollups** — a distinct thing — standing in until each
+domain's capabilities are enumerated individually. A rollup's state is the floor
+across the domain (a domain is only as advanced as its least-advanced OEM-gated
+capability). The real per-capability model, with a computed domain rollup on
+top, is the target; this is the honest interim, not a mislabeled shortcut.
 
-### Retrofit — the five existing domains, states assigned against live evidence
+### Retrofit — provisional domain rollups (not `Capability` instances)
 
-Not guessed. Each state was checked against the live repo, not the founding
-memo's assertion — `reviewStatus` counts read from the tracked JSON, domain
-posture read from `PROJECT_STATUS.md`. `oemReference.source` omitted where
-locked or absent.
+Checked against the live repo, not the founding memo's assertion — `reviewStatus`
+counts read from the tracked JSON, domain posture from `PROJECT_STATUS.md`. Each
+rollup shows `operational` as **computed** (`authorized` AND `allEvidenceCurrent`),
+never asserted — which is how the Cisco entry below stops short of `operational`.
 
 ```json
-[
-  {
-    "id": "cap.cisco-ios",
-    "title": "Cisco IOS operational command reference",
-    "domain": "cisco-ios",
-    "capabilityState": "operational",
-    "oemReference": { "locked": false, "note": "Public command references; no OEM-licensed source gates this domain." },
-    "evidenceNote": "76/77 Blocks reviewStatus:current with real http url + reviewedBy (verified in cisco-ios-knowledge-blocks.json). The one non-current, show-users, is a documented negative — absent from the sourced chapter — not a pending review."
-  },
-  {
-    "id": "cap.hl7-fhir",
-    "title": "HL7 v2 / FHIR interface structures",
-    "domain": "hl7-fhir",
-    "capabilityState": "operational",
-    "oemReference": { "locked": false, "note": "Public standards (HL7 v2.5.1, FHIR R4); no OEM lock." },
-    "evidenceNote": "15/15 Blocks reviewStatus:current with real url + reviewedBy (verified in hl7-knowledge-blocks.json)."
-  },
-  {
-    "id": "cap.acl-top-350",
-    "title": "ACL TOP 350 CTS serviceable system",
-    "domain": "acl-top-350",
-    "capabilityState": "structured",
-    "oemReference": { "locked": false, "note": "Manufacturer spec-sheet data; IP posture pending legal review (PROJECT_STATUS), which is a copyright question, not an OEM-document access lock." },
-    "evidenceNote": "9/9 Blocks needs-review (verified). Blocked at validated — nothing Steward-promoted yet."
-  },
-  {
-    "id": "cap.ge-oec-one-cfd",
-    "title": "GE OEC One CFD serviceable system",
-    "domain": "ge-oec-one-cfd",
-    "capabilityState": "structured",
-    "oemReference": { "locked": true, "note": "Service manual SM-7888001-1EN-17 and DICOM conformance DOC2198430 sit behind a GE account nobody on the team holds." },
-    "evidenceNote": "12/12 capabilities cleared Phase 4, but explicitly NOT validated: repo carries only 1 draft-only Block (needs-review), three uncoordinated Phase 6 attempts still unreconciled (PROJECT_STATUS, README_NOT_CANONICAL). Held at structured deliberately — do not advance past where PROJECT_STATUS says this domain actually is."
-  },
-  {
-    "id": "cap.iicrc-s500",
-    "title": "IICRC S500 water-restoration serviceable methods",
-    "domain": "iicrc-s500",
-    "capabilityState": "structured",
-    "oemReference": { "locked": true, "note": "Real, edition-confirmed IICRC S500 standard not yet obtained — the canonical locked case the state model was built to describe." },
-    "evidenceNote": "Facts-and-methods build authorized under IP constraint; postdates the 2026-07-28 PROJECT_STATUS snapshot, so grounded in the S500 crew charters. Stays locked until the edition-confirmed standard is in hand."
-  }
-]
+{
+  "_kind": "provisional-domain-rollups",
+  "_note": "DOMAIN-level rollups, NOT Capability instances (Steward review F3). rolledUpState is derived from the booleans shown; operational == validated/authorized AND allEvidenceCurrent.",
+  "rollups": [
+    {
+      "domain": "cisco-ios",
+      "validated": true, "oemLocked": false, "allEvidenceCurrent": false,
+      "rolledUpState": "authorized",
+      "basis": "76/77 blocks current w/ real url + reviewedBy. NOT strictly operational under the computed rule: show-users is reviewStatus 'needs-review' (url TBD), so allEvidenceCurrent is false. It is a documented negative (an absent command) and should be reclassified 'deprecated' — a Steward action — after which this computes operational. The computed rule (F1) caught precisely what the earlier eyeballed 'operational' had glossed over."
+    },
+    {
+      "domain": "hl7-fhir",
+      "validated": true, "oemLocked": false, "allEvidenceCurrent": true,
+      "rolledUpState": "operational",
+      "basis": "15/15 blocks current w/ real url + reviewedBy. authorized AND all-current -> operational computes true."
+    },
+    {
+      "domain": "acl-top-350",
+      "validated": false, "oemLocked": false, "allEvidenceCurrent": false,
+      "rolledUpState": "structured",
+      "basis": "9/9 needs-review; not yet Steward-validated. oem not locked (spec-sheet IP is a separate copyright question, not a document-access lock)."
+    },
+    {
+      "domain": "ge-oec-one-cfd",
+      "validated": false, "oemLocked": true, "allEvidenceCurrent": false,
+      "rolledUpState": "structured",
+      "basis": "12/12 capabilities cleared Phase 4 but NOT validated; repo holds 1 draft-only block (needs-review); Phase 6 unreconciled. SM-7888001-1EN-17 + DOC2198430 behind a GE account nobody holds."
+    },
+    {
+      "domain": "iicrc-s500",
+      "validated": false, "oemLocked": true, "allEvidenceCurrent": false,
+      "rolledUpState": "structured",
+      "basis": "Facts-and-methods build under IP constraint; edition-confirmed S500 not yet obtained. Postdates the 2026-07-28 PROJECT_STATUS snapshot, so grounded in the S500 crew charters."
+    }
+  ]
+}
 ```
 
-**Status.** `Capability` object proposed by CTO; retrofit states assigned by
-Code against live evidence. **Steward-reviewed 2026-07-30** (see
-`capability-object-steward-review.md`) — composite outcome: *Approve with
-Constraints* on the field set (C1–C3 attached), **Hold** on `operational`
-semantics (two precise unresolved requirements: it is typed as a stored value
-but defined as computed, and its OEM-specific evidence subset is
-unidentifiable), *Return for Editing* on the retrofit (the five entries are
-domain rollups mislabeled as capabilities). Self-review firewall flagged in the
-review: **not** final certification — pending an independent Steward or Architect
-ratification. Deliberately **not** yet built into the app: no `capabilities`
-table, no
-migration, no seed. That's the downstream step, gated on this review, exactly
-as the founding memo required ("don't build against it mid-domain without that
-pass").
+**Status.** `Capability` object proposed by CTO; **Steward-reviewed 2026-07-30**
+(see `capability-object-steward-review.md`) with a Hold + Return; **CTO revision
+2026-07-30 addressed all three** and is recorded above:
+
+- **F1 (was Hold) →** `operational` is no longer a stored enum value; it is a
+  separate *computed* boolean. No field can be hand-set to `operational`.
+- **F2 (was Hold) →** `evidence` entries carry `oemSpecific`, so the OEM subset
+  is identifiable; the authority gate C3 is now checkable. `operational` was
+  also tightened to require *all* evidence `current`.
+- **F3 (was Return for Editing) →** the retrofit is relabeled as explicit
+  provisional domain rollups, not `Capability` instances. In the process the
+  computed rule corrected an over-claim: **Cisco is `authorized`, not
+  `operational`** (its `show-users` block is `needs-review`, not `deprecated`).
+- Constraints **C1–C3** from the review are reflected in the field definitions.
+
+Per the review's firewall note, this revision still needs an **independent**
+Steward or Architect ratification before it is settled — the persona that
+authored, reviewed, and revised it must not also be the one to clear it.
+Deliberately **not** yet built into the app: no `capabilities` table, no
+migration, no seed — the downstream step, gated on that independent sign-off,
+exactly as the founding memo required ("don't build against it mid-domain
+without that pass").
 
 ---
 
