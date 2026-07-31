@@ -258,6 +258,8 @@ to v1.0**. No word of the harm boundary, the sentence-level enforcement
 rule, the commercial-pressure clause, or the disclaimer was altered.
 References to TRANSLATE-CONST for the harm boundary remain valid.
 
-**Ratification status:** DRAFT pending Architect ratification and review
-(Ledger/COO and Claude review requested). Until ratified, TRANSLATE-CONST-v1.0
-remains the operative version of record.
+**Ratification status:** **RATIFIED by the Architect, 2026-07-30**, atomically
+with CCO v1.0. TRANSLATE-CONST-v2.0 is now the operative version of record,
+superseding v1.0. Fidelity confirmed by independent review before ratification:
+the harm-boundary body is byte-identical to v1.0, and the CCO extraction is the
+only substantive change.

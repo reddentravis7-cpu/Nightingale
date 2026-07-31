@@ -2,6 +2,7 @@
 
 **Version:** 1.0
 **Status:** Ratified role — this document renders the ratified charter recorded in project memory. Sections marked *(reconstructed)* restate recorded intent where the original exact wording was not preserved in the summary; reconcile against the original if it is still held.
+**Document ID:** TRANSLATE-ROLE-RESEARCH-v1.0
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Per-domain (one Researcher per discipline crew)
 **Hands off to:** Domain Steward

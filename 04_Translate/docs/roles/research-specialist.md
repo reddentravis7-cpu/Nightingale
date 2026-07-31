@@ -2,6 +2,7 @@
 
 **Version:** 1.0
 **Status:** Ratified
+**Document ID:** TRANSLATE-ROLE-RSPEC-v1.0
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Cross-cutting (one watcher across all disciplines)
 **Reports findings to:** Domain Stewards (e.g. Sheldon)

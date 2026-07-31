@@ -1,7 +1,7 @@
 # Common Constitutional Obligations (CCO)
 
 **Version:** 1.0
-**Status:** DRAFT base document — ratify **atomically** with TRANSLATE-CONST-v2.0 (the amendment that authorizes it). Until that pair is ratified, no role is bound to cite CCO, and TRANSLATE-CONST-v1.0 remains operative.
+**Status:** **Ratified base document (Architect, 2026-07-30)** — ratified atomically with TRANSLATE-CONST-v2.0. Roles now cite CCO v1.0; pre-CCO role charters are grandfathered per §4 until individually re-ratified.
 **Scope:** All Translate governance roles (platform-wide)
 **Authority:** Subordinate to the **Translate Constitution — TRANSLATE-CONST** (the Translate Scope Constitution; the same foundational document, *not* the separate Cisco IOS Domain Steward constitution). The amendment extracting these obligations into this document lives in TRANSLATE-CONST-v2.0. This document supersedes no clause of the Constitution; where the two conflict, the Constitution governs.
 **Implemented by:** Research · Steward · CTO · Editor in Chief · Marketing Director · Training Director · Database Manager · Field Engineer (FSE) · Research Specialist · Director of Analytics — and any governance role added later. (Roster carried over from the canonical Constitution's common-obligations section, from which these obligations were extracted; see the Amendment note in the Constitution.)
@@ -86,4 +86,4 @@ If a clause in a role charter merely restates an obligation already in §3, it s
 
 This document is versioned and ratified by the Architect. Amendments increment the CCO version and trigger deliberate re-ratification of each role onto the new version (§4). The version and status at the top are authoritative.
 
-*DRAFT base document CCO v1.0 — authored 2026-07-29; ratify atomically with TRANSLATE-CONST-v2.0.*
+*Ratified base document CCO v1.0 — authored 2026-07-29; ratified 2026-07-30 (Architect), atomically with TRANSLATE-CONST-v2.0.*

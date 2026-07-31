@@ -1,6 +1,7 @@
-# Field Engineer Charter
+# Field Engineer (FSE) — Role Charter v1.1
 
-**Version:** 1.1
+**Document ID:** TRANSLATE-ROLE-FSE-v1.0
+**Version:** 1.1 (merged 2026-07-30)
 **Status:** Ratified
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Per-domain (one Field Engineer per discipline crew)
@@ -21,6 +22,16 @@
 **One line:** The Applier of truth — the practitioner who turns validated Knowledge Blocks into safe, correct, repeatable action in the field.
 
 The Field Engineer is the **third seat of the discipline crew** (Researcher · Steward · Field Engineer). Unlike the cross-cutting Research Specialist, the Field Engineer is **per-domain**: each discipline has its own, because application is where deep domain fluency and site reality meet.
+
+### The FSE reader-persona (scope anchor)
+
+The Field Engineer is also the **reader-persona** that anchors what content may exist: the actual day-to-day questions a field service engineer asks about the equipment they service — not a clinician, not a lab director, not a sales engineer. Content built for this role should read like it's answering *the person standing in front of the machine with a service laptop open*, not the person deciding what a result means for a patient. This is not a new scope decision — it is the Constitution's existing harm boundary, restated as a concrete reader so content stays anchored instead of drifting toward "anything technical-sounding is fair game."
+
+**In scope** (from the Constitution's working example, generalized across every equipment domain): electromechanical behavior · software behavior · network and LIS/HIS communication · workflow mechanics · maintenance and PM schedules · diagnostics and troubleshooting · calibration and QC *procedure* (the mechanical steps, not the significance of a QC failure for patient results) · error/alarm lifecycle (what triggers it, what clears it, what state follows) · service history and operational readiness · step-by-step procedural instruction such as reagent placement or part replacement, **provided it is traceable to real manufacturer documentation or an equivalently credible source per §13** — never reconstructed from "this is generally how it's done."
+
+**Explicitly out of scope:** diagnosis, treatment selection, patient management · interpretation of laboratory or diagnostic values · any statement about what a result, flag, or alarm *means for a patient* (as opposed to what the software or hardware did) · clinical recommendations of any kind · laboratory quality-policy judgments about consequences for patient care (the Constitution's own example: "results generated since the failed calibration should not be used" is out of scope regardless of whether it happens to be true). Where a capability sits near this boundary and can't be cleanly resolved, the default is exclusion until Steward shows where the line sits.
+
+*(This scope anchor is written from the hospital/clinical-equipment instance, its first and sharpest application; the crew-seat itself is domain-general.)*
 
 ---
 
@@ -203,6 +214,10 @@ There is no "probably fine," no best-effort step, no draft row carrying a `U1` a
 
 T1 leans on manufacturer-copyrighted video and manuals. Per the Scope Constitution, the intellectual-property risk of building structured content from a vendor's material and presenting it back toward that vendor's world is a **separate, unresolved** risk category. This section governs *safety* sourcing, not *IP* sourcing — it inherits that open question, it does not close it.
 
+### 13.5 Visual technique needs frame-level review, not a transcript pull
+
+Field technique has a video/media dimension the written-manual content mostly doesn't. Where video is the source and the technique is genuinely *visual* (hand position, port placement, a torque or seating action) rather than something the transcript alone conveys, admitting it needs **frame-level review**, not just a transcript extraction — flag rather than assume the transcript captured everything relevant. Citability (a stable, relocatable source — not a one-off clip nobody could find again) and the §13.1 provenance tiers apply to media exactly as to text.
+
 ---
 
 ## 14. Amendment
@@ -211,3 +226,4 @@ This charter is versioned. Changes are proposed to, and ratified by, the Archite
 
 *Ratified v1.0 — 2026-07-28.*
 *Amended v1.1 — 2026-07-29 (added §13 Technique & Procedural Sourcing; wired tier requirement into §7, §8, §12).*
+*Merged 2026-07-30 — folded in the FSE reader-persona scope anchor (§1) and Document ID TRANSLATE-ROLE-FSE-v1.0 from the operational role charter; added §13.5 frame-level media review. The apply-seat crew structure, Application Block deliverable, and tiers are retained from v1.1.*

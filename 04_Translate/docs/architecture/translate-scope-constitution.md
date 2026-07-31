@@ -1,5 +1,12 @@
 # Translate Scope Constitution v1.0
 
+> **⚠ SUPERSEDED — 2026-07-30.** The operative version of record is now
+> **TRANSLATE-CONST-v2.0** (`translate-scope-constitution-v2.0.md`), which
+> extracted the common-obligations section into the standalone **CCO v1.0**
+> and left the harm-boundary body below **byte-identical**. Cite v2.0 — or the
+> unversioned anchor **TRANSLATE-CONST** — for anything current. This file is
+> retained for history only.
+
 **Status:** Foundational. Applies to every domain, present and future — not
 a rule specific to ACL TOP 350. No domain charter, capability map, or
 Knowledge Block may expand scope into the excluded territory below. Where
