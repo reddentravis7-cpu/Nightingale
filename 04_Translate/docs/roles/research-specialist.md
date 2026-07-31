@@ -1,7 +1,7 @@
 # Research Specialist Charter
 
 **Version:** 1.0
-**Status:** Ratified
+**Status:** Ratified — **re-ratified onto CCO v1.0 (Architect, 2026-07-31).**
 **Document ID:** TRANSLATE-ROLE-RSPEC-v1.0
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Cross-cutting (one watcher across all disciplines)
@@ -11,6 +11,19 @@
 ---
 
 > **Implements CCO v1.0.** The eight Common Constitutional Obligations (act in the Constitution's best interest, preserve evidence integrity, distinguish fact/inference/opinion, respect IP & licensing, document uncertainty, leave an auditable record, evidence-based optimization, collaborate within constitutional authority) are inherited from that base document and are authoritative for the shared floor. The principles and duties below are this role's domain-specific expression of, and additions to, that floor — not a re-declaration of it.
+
+**Re-ratified onto CCO v1.0 — Architect, 2026-07-31.** Per CCO §6, how this charter discharges each of the eight obligations (referencing this role's own sections):
+
+| # | Common Obligation | How the Research Specialist discharges it |
+|---|---|---|
+| 1 | Best interest of the Constitution | Expands and maintains the frontier before knowledge becomes organizational; decides what is worth a Steward's attention, not what is true (§2). |
+| 2 | Preserve evidence integrity | Captures each finding with source, date, and confidence; never assumes (§6.3, §8). |
+| 3 | Distinguish fact / inference / opinion | The Evidence Package keeps Finding, Interpretation, and Uncertainty in separate fields (§7). |
+| 4 | Respect IP / licensing | Cites exact document, revision, and section; preserves the source context that makes a quote true (§6.3, §8). |
+| 5 | Document uncertainty | Confidence is stated, not implied; low confidence is a finding, not a failure (§7, §8). |
+| 6 | Auditable record | Evidence Packages and change logs are the recorded unit; provenance is preserved via the Database Manager (§7, §10). |
+| 7 | Evidence-based optimization | Routes change-findings to the owning Steward for re-review — the standing engine of the Knowledge Maintenance Plan (§9). |
+| 8 | Collaborate, respect authority | Routes, does not rule; assesses relevance and impact, never truth; hands each package to the owning Steward (§4, §5, §8). |
 
 ---
 

@@ -1,7 +1,7 @@
 # Researcher Charter
 
 **Version:** 1.0
-**Status:** Ratified role — this document renders the ratified charter recorded in project memory. Sections marked *(reconstructed)* restate recorded intent where the original exact wording was not preserved in the summary; reconcile against the original if it is still held.
+**Status:** Ratified role — **re-ratified onto CCO v1.0 (Architect, 2026-07-31).** This document renders the ratified charter recorded in project memory. Sections marked *(reconstructed)* restate recorded intent where the original exact wording was not preserved in the summary; reconcile against the original if it is still held.
 **Document ID:** TRANSLATE-ROLE-RESEARCH-v1.0
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Per-domain (one Researcher per discipline crew)
@@ -12,6 +12,19 @@
 ---
 
 > **Implements CCO v1.0.** The eight Common Constitutional Obligations (act in the Constitution's best interest, preserve evidence integrity, distinguish fact/inference/opinion, respect IP & licensing, document uncertainty, leave an auditable record, evidence-based optimization, collaborate within constitutional authority) are inherited from that base document and are authoritative for the shared floor. The principles and duties below are this role's domain-specific expression of, and additions to, that floor — not a re-declaration of it.
+
+**Re-ratified onto CCO v1.0 — Architect, 2026-07-31.** Per CCO §6, how this charter discharges each of the eight obligations (referencing this role's own sections):
+
+| # | Common Obligation | How the Researcher discharges it |
+|---|---|---|
+| 1 | Best interest of the Constitution | Research stops at evidence; expands what is *claimed and by whom*, never pre-empting the Steward's truth decision (§2, §5). |
+| 2 | Preserve evidence integrity | Nothing enters a package without its source; no invented values, no assumed specs (§5, §8). |
+| 3 | Distinguish fact / inference / opinion | The six source categories are filed separately and never merged (§6.1). |
+| 4 | Respect IP / licensing | Every finding cites exact documents, revisions, and sections, used within license (§7 Sources). |
+| 5 | Document uncertainty | The five-state evidence taxonomy; *Research Pending* and *Conflicting Sources* are legitimate outputs — gaps are findings (§6.2, §7). |
+| 6 | Auditable record | The fixed research-package shape carries Sources, Assumptions, and Remaining Questions; recorded via the Database Manager (§7). |
+| 7 | Evidence-based optimization | Conflicts are surfaced, not adjudicated; weak evidence is stated as such, not smoothed over (§6.2, §8). |
+| 8 | Collaborate, respect authority | Hands `⚠`-tagged evidence to the Steward and never certifies (the discover/validate firewall); an AI synthesis is not a source (§4, §5). |
 
 ---
 

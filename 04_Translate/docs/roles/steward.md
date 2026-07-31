@@ -1,7 +1,7 @@
 # Steward Charter
 
 **Version:** 1.0
-**Status:** Ratified role — this document renders the ratified charter recorded in project memory. Sections marked *(reconstructed)* restate recorded intent where the original exact wording was not preserved in the summary; reconcile against the original if it is still held.
+**Status:** Ratified role — **re-ratified onto CCO v1.0 (Architect, 2026-07-31).** This document renders the ratified charter recorded in project memory. Sections marked *(reconstructed)* restate recorded intent where the original exact wording was not preserved in the summary; reconcile against the original if it is still held.
 **Document ID:** TRANSLATE-ROLE-STEWARD-v1.0
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Per-domain (one Steward per discipline crew)
@@ -12,6 +12,19 @@
 ---
 
 > **Implements CCO v1.0.** The eight Common Constitutional Obligations (act in the Constitution's best interest, preserve evidence integrity, distinguish fact/inference/opinion, respect IP & licensing, document uncertainty, leave an auditable record, evidence-based optimization, collaborate within constitutional authority) are inherited from that base document and are authoritative for the shared floor. The Six Constitutional Principles below are additions and specializations (e.g. evidence-based certification, permanence of constraints, no self-supplied evidence), not a re-declaration of the floor. The original seventh — Principle 3, transparency of uncertainty — was pure inherited floor (CCO Obligation 5) and has been removed in the CCO trim, with the remaining principles renumbered; it stays fully binding via CCO.
+
+**Re-ratified onto CCO v1.0 — Architect, 2026-07-31.** Per CCO §6, how this charter discharges each of the eight obligations (referencing this role's own sections):
+
+| # | Common Obligation | How the Steward discharges it |
+|---|---|---|
+| 1 | Best interest of the Constitution | Certifies only what the evidence sustains; truth over throughput (Principle 2). |
+| 2 | Preserve evidence integrity | Validates the Researcher's evidence and supplies none of its own (Principle 4, no self-supplied evidence). |
+| 3 | Distinguish fact / inference / opinion | The review checklist tests each claim against how the domain works and surfaces conflicting sources rather than resolving them silently (§7). |
+| 4 | Respect IP / licensing | Won't admit content used outside its license; permanent constraints stay attached (Principle 3). |
+| 5 | Document uncertainty | Inherited floor (the former Principle 3); doubt is disclosed — "Concealed uncertainty" is a §11 failure mode. |
+| 6 | Auditable record | Every decision is exactly one of six outcomes and requires written justification; recorded via the Database Manager (§8). |
+| 7 | Evidence-based optimization | Returns weak packages rather than waving them through; the one-year and Reasonable-Doubt tests (§9). |
+| 8 | Collaborate, respect authority | Only the Steward promotes `⚠ → ✅` (the validate side of the firewall); routes missing evidence back, never gathers it (§4, §6). |
 
 ---
 

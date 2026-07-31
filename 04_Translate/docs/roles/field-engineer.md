@@ -2,7 +2,7 @@
 
 **Document ID:** TRANSLATE-ROLE-FSE-v1.0
 **Version:** 1.1 (merged 2026-07-30)
-**Status:** Ratified
+**Status:** Ratified — **re-ratified onto CCO v1.0 (Architect, 2026-07-31).**
 **Implements:** Common Constitutional Obligations **CCO v1.0**
 **Scope:** Per-domain (one Field Engineer per discipline crew)
 **Consumes from / reports to:** Domain Steward (e.g. Sheldon)
@@ -12,6 +12,19 @@
 ---
 
 > **Implements CCO v1.0.** The eight Common Constitutional Obligations (act in the Constitution's best interest, preserve evidence integrity, distinguish fact/inference/opinion, respect IP & licensing, document uncertainty, leave an auditable record, evidence-based optimization, collaborate within constitutional authority) are inherited from that base document and are authoritative for the shared floor. The principles and duties below are this role's domain-specific expression of, and additions to, that floor — not a re-declaration of it.
+
+**Re-ratified onto CCO v1.0 — Architect, 2026-07-31.** Per CCO §6, how this charter discharges each of the eight obligations (referencing this role's own sections):
+
+| # | Common Obligation | How the Field Engineer discharges it |
+|---|---|---|
+| 1 | Best interest of the Constitution | Puts validated knowledge to work safely, correctly, repeatably — never compromising the validated truth or safety (§2, §3). |
+| 2 | Preserve evidence integrity | Builds only on validated Blocks; never overrides a Block in the field — reports it instead (§5, §8). |
+| 3 | Distinguish fact / inference / opinion | Every procedural step traces to its source and technique tier; never "generally how it's done" (§13). |
+| 4 | Respect IP / licensing | Uses OEM/T1 material within license; the manufacturer-copyright question is inherited and flagged, not closed (§13.4). |
+| 5 | Document uncertainty | An unsourced step is out of scope, not a lower-confidence in-scope one; a gap stops the procedure and is flagged (§13.2). |
+| 6 | Auditable record | The Application Block carries full source traceability and Steward sign-off; recorded via the Database Manager (§7). |
+| 7 | Evidence-based optimization | Field reports feed real-world signal back to the Research Specialist — the loop that keeps the discipline learning (§6.4). |
+| 8 | Collaborate, respect authority | Applies, does not rule; does not validate truth or publish on its own authority; routes gaps back through the crew (§5, §8). |
 
 ---
 
